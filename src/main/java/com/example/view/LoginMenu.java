@@ -1,5 +1,6 @@
 package com.example.view;
 
+import java.util.EnumSet;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 
@@ -14,6 +15,9 @@ public class LoginMenu extends AppMenu {
         String input = scanner.nextLine();
         Matcher matcher;
         if(input.equals("show current menu")) System.out.println("Register/Login Menu");
+        else if(input.equals("show commands"))
+            for (LoginMenuCommands command : EnumSet.allOf(LoginMenuCommands.class))
+                System.out.println(command);
 
         else if((matcher = LoginMenuCommands.Register.getCommandMatcher(input)).find()) {
             Result result = LoginMenuController.register(matcher.group("username"), matcher.group("password"), matcher.group("passwordConfirmation"), matcher.group("email"), matcher.group("nickname"));

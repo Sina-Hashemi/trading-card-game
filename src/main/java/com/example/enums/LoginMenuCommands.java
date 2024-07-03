@@ -8,7 +8,7 @@ public enum LoginMenuCommands { // TODO - Sina - empty input fix
     QuestionPick("^question pick -q (?<questionNumber>.+) -a (?<answer>.+) -c (?<answerCnfirmation>.+)$"),
     Login("^user login -u (?<username>.+) -p (?<password>.+)$"),
     ForgetPassword("^Forgot my password -u (?<username>.+)$"),
-    Exit("Exit");
+    Exit("^Exit$");
 
     private final String pattern;
 
@@ -18,5 +18,11 @@ public enum LoginMenuCommands { // TODO - Sina - empty input fix
 
     public Matcher getCommandMatcher(String input) {
         return Pattern.compile(this.pattern).matcher(input);
+    }
+
+    @Override
+    public String toString() {
+        // TODO - ehsan - make it prettier
+        return pattern;
     }
 }

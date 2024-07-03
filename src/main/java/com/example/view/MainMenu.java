@@ -1,5 +1,6 @@
 package com.example.view;
 
+import java.util.EnumSet;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 
@@ -14,6 +15,9 @@ public class MainMenu extends AppMenu {
         String input = scanner.nextLine();
         Matcher matcher;
         if(input.equals("show current menu")) System.out.println("Main Menu");
+        else if(input.equals("show commands"))
+            for (MainMenuCommands command : EnumSet.allOf(MainMenuCommands.class))
+                System.out.println(command);
 
         else if((matcher = MainMenuCommands.enterProfileMenu.getCommandMatcher(input)).find()) {
             System.out.println(MainMenuController.enterProfileMenu());

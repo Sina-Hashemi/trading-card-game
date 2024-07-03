@@ -19,4 +19,10 @@ public enum MainMenuCommands {
     public Matcher getCommandMatcher(String input) {
         return Pattern.compile(this.pattern).matcher(input);
     }
+
+    @Override
+    public String toString() {
+        // TODO - ehsan - make it prettier
+        return pattern;
+    }
 }
