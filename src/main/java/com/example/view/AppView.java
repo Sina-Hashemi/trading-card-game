@@ -11,7 +11,7 @@ public class AppView {
         Scanner scanner = new Scanner(System.in);
         // TODO - Sina - initialize from SQL
 
-        System.out.println("Welcome! \nYou can see list of commands using \"show command\"\n\tand see current menu using \"show current menu\"");
+        System.out.println("Welcome! \nYou can see list of commands using \"show commands\"\n\tand see current menu using \"show current menu\"");
         while (App.getCurrentMenu() != Menu.Exit)
             App.getCurrentMenu().checkCommand(scanner);
 
