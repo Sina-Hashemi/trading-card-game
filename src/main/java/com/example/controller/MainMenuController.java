@@ -17,4 +17,14 @@ public class MainMenuController {
         return new Result(true, "Entered profile menu!");
     }
 
+    public static Result enterShopMenu() {
+        App.setCurrentMenu(Menu.ShopMenu);
+        return new Result(true, "Entered shop menu!");
+    }
+
+    public static Result enterGameHistoryMenu() {
+        App.setCurrentMenu(Menu.GameHistoryMenu);
+        return new Result(true, "Entered game history menu!");
+    }
+
 }

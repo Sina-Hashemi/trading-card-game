@@ -22,6 +22,12 @@ public class MainMenu extends AppMenu {
         else if((matcher = MainMenuCommands.enterProfileMenu.getCommandMatcher(input)).find()) {
             System.out.println(MainMenuController.enterProfileMenu());
         }
+        else if((matcher = MainMenuCommands.enterShopMenu.getCommandMatcher(input)).find()) {
+            System.out.println(MainMenuController.enterShopMenu());
+        }
+        else if((matcher = MainMenuCommands.enterGameHistoryMenu.getCommandMatcher(input)).find()) {
+            System.out.println(MainMenuController.enterGameHistoryMenu());
+        }
         else if((matcher = MainMenuCommands.logout.getCommandMatcher(input)).find()) {
             System.out.println(MainMenuController.logout());
         }
