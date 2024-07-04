@@ -6,6 +6,7 @@ public class User {
     private String username, password, email, nickname; // TODO - Sina - change password type to hash
     private SecurityQuestion passwordRecoveryQuestion;
     private ArrayList<Card> cards;
+    private ArrayList<History> records;
     private int level, maxHP, XP, money;
 
     public User(String username, String password, String email, String nickname) {
@@ -15,6 +16,7 @@ public class User {
         this.nickname = nickname;
 
         this.cards = new ArrayList<>();
+        this.records = new ArrayList<>();
         this.level = 1;
         this.maxHP = 100;
         this.XP = 0;
@@ -55,6 +57,10 @@ public class User {
 
     public ArrayList<Card> getCards() {
         return cards;
+    }
+
+    public ArrayList<History> getRecords() {
+        return records;
     }
 
     public void setCards(ArrayList<Card> cards) {
@@ -99,5 +105,10 @@ public class User {
 
     public void setPasswordRecoveryQuestion(SecurityQuestion passwordRecoveryQuestion) {
         this.passwordRecoveryQuestion = passwordRecoveryQuestion;
+    }
+
+    @Override
+    public String toString() {
+        return username + "\t" + level + "\t" + money;
     }
 }

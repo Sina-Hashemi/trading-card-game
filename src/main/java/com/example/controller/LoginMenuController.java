@@ -17,6 +17,12 @@ public class LoginMenuController {
         // TODO - Sina - save in SQL
     }
 
+    public static Result LoginAsAdmin(String password) {
+        if(!password.equals(App.getAdminpass())) return new Result(false, "password is wrong");
+        App.setCurrentMenu(Menu.AdminMenu);
+        return new Result(true, "Logged in as Admin!");
+    }
+
     public static Result register(String username, String password, String passwordConfirmation, String email, String nickname) {
         if(username.equals("")) return new Result(false, "Username field is empty!");
         if(password.equals("")) return new Result(false, "Password field is empty!");

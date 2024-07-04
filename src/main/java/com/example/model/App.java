@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import com.example.enums.Menu;
 
 public class App {
+    private static final String adminPass = "1234";
+
     private static User loggedInUser = null;
     private static ArrayList<User> users = new ArrayList<>();
+    private static ArrayList<Card> cards = new ArrayList<>();
     private static Menu currentMenu = Menu.LoginMenu;
 
     public static User getLoggedInUser() {
@@ -21,6 +24,10 @@ public class App {
         return users;
     }
 
+    public static ArrayList<Card> getCards() {
+        return cards;
+    }
+
     public static Menu getCurrentMenu() {
         return currentMenu;
     }
@@ -29,4 +36,7 @@ public class App {
         App.currentMenu = currentMenu;
     }
 
+    public static String getAdminpass() {
+        return adminPass;
+    }
 }

@@ -16,11 +16,14 @@ public class LoginMenu extends AppMenu {
         Matcher matcher;
         if(input.equals("show current menu")) System.out.println("Register/Login Menu");
         else if(input.equals("show commands"))
-            for (LoginMenuCommands command : EnumSet.allOf(LoginMenuCommands.class))
-                System.out.println(command);
+        for (LoginMenuCommands command : EnumSet.allOf(LoginMenuCommands.class))
+        System.out.println(command);
 
+        else if((matcher = LoginMenuCommands.LoginAsAdmin.getCommandMatcher(input)).find()) {
+            System.out.println(LoginMenuController.LoginAsAdmin(matcher.group("password")));
+        }
         else if((matcher = LoginMenuCommands.Register.getCommandMatcher(input)).find()) {
-            Result result = LoginMenuController.register(matcher.group("username"), matcher.group("password"), matcher.group("passwordConfirmation"), matcher.group("email"), matcher.group("nickname"));
+            Result result = LoginMenuController.register(matcher.group("username"), matcher.group("password"), matcher.group("passwordConfirmation"), matcher.group("email"), matcher.group("nickname").trim());
             System.out.println(result);
             if(result.isSuccessful()) {
                 handleQuestionAndCaptcha(scanner);

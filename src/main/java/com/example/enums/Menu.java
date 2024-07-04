@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.example.view.*;
 
 public enum Menu {
+    AdminMenu(new AdminMenu()),
     LoginMenu(new LoginMenu()),
     MainMenu(new MainMenu()),
     ProfileMenu(new ProfileMenu()),
