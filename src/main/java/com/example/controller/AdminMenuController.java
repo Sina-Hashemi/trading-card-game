@@ -65,11 +65,11 @@ public class AdminMenuController {
                 break;
             }
         }
-        start: for (User user : App.getUsers()) {
+        for (User user : App.getUsers()) {
             for (Card card : user.getCards()) {
                 if(card.getName().equals(name)) {
                     user.getCards().remove(card);
-                    break start;
+                    break;
                 }
             }
         }

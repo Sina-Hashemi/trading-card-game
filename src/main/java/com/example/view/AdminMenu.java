@@ -36,7 +36,11 @@ public class AdminMenu extends AppMenu {
             System.out.println(AdminMenuController.editCard(matcher.group("name")));
         }
         else if((matcher = AdminMenuCommands.removeCard.getCommandMatcher(input)).find()) {
-            System.out.println(AdminMenuController.removeCard(matcher.group("name")));
+            System.out.println("are you sure you want to delete this card?(Y/n)");
+            input = scanner.nextLine();
+            if (input.equals("Y") || input.equals("y")) {
+                System.out.println(AdminMenuController.removeCard(matcher.group("name")));
+            }
         }
 
         else System.out.println("Invalid command!");
