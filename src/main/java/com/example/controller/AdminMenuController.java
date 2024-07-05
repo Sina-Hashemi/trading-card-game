@@ -29,6 +29,7 @@ public class AdminMenuController {
 
     public static Result addCard(String name, String attack, String damage, String duration, String basePrice,
             String upgradeLevel, String upgradeCost, String character) {
+        // TODO - sina - handle errors
         try {
             switch (character) {
                 case "electricity":

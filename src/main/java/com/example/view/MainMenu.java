@@ -19,6 +19,22 @@ public class MainMenu extends AppMenu {
             for (MainMenuCommands command : EnumSet.allOf(MainMenuCommands.class))
                 System.out.println(command);
 
+        else if((matcher = MainMenuCommands.startNewGame.getCommandMatcher(input)).find()) {
+            Result result = MainMenuController.preparePlayerTwo(matcher.group("username"));
+            System.out.println(result);
+            if(result.isSuccessful()) {
+                input = scanner.nextLine();
+                System.out.println(MainMenuController.checkSecondUser(input, "0"));
+            }
+        }
+        else if((matcher = MainMenuCommands.startNewBetGame.getCommandMatcher(input)).find()) {
+            Result result = MainMenuController.preparePlayerTwo(matcher.group("username"));
+            System.out.println(result);
+            if(result.isSuccessful()) {
+                input = scanner.nextLine();
+                System.out.println(MainMenuController.checkSecondUser(input, matcher.group("bet")));
+            }
+        }
         else if((matcher = MainMenuCommands.enterProfileMenu.getCommandMatcher(input)).find()) {
             System.out.println(MainMenuController.enterProfileMenu());
         }

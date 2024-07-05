@@ -2,17 +2,12 @@ package com.example.enums;
 
 import java.util.regex.*;
 
-public enum MainMenuCommands {
-    enterProfileMenu("^profile menu$"),
-    enterShopMenu("^shop menu$"),
-    enterGameHistoryMenu("^game history menu$"),
-    startNewGame("^start normal game with -u (?<username>.+)$"),
-    startNewBetGame("^start bet game with -u (?<username>.+) -b (?<bet>.+)$"),
-    logout("^log out$");
+public enum GameMenuCommands {
+    back("^back$");
 
     private final String pattern;
 
-    MainMenuCommands(String pattern) {
+    GameMenuCommands(String pattern) {
         this.pattern = pattern;
     }
 

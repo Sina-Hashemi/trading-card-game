@@ -13,7 +13,6 @@ public class AdminMenu extends AppMenu {
     @Override
     public void check(Scanner scanner) {
         String input = scanner.nextLine();
-        @SuppressWarnings("unused")
         Matcher matcher;
         if(input.equals("show current menu")) System.out.println("Register/Login Menu");
         else if(input.equals("show commands"))
