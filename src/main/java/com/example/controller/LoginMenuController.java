@@ -14,7 +14,6 @@ public class LoginMenuController {
 
     public static void exit() {
         App.setCurrentMenu(Menu.Exit);
-        // TODO - Sina - save in SQL
     }
 
     public static Result LoginAsAdmin(String password) {

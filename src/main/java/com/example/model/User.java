@@ -5,18 +5,18 @@ import java.util.Random;
 
 public class User {
 
-    public class CardLevel {
+    public static class CardLevel {
         private final Card card;
-        private int Level;
+        private int level;
 
         public CardLevel(Card card) {
             this.card = card;
-            this.Level = 0;
+            this.level = 0;
         }
 
         public CardLevel(Card card, int level) {
             this.card = card;
-            Level = level;
+            this.level = level;
         }
 
         public Card getCard() {
@@ -24,22 +24,23 @@ public class User {
         }
 
         public int getLevel() {
-            return Level;
+            return level;
         }
 
         public void setLevel(int level) {
-            Level = level;
+            this.level = level;
         }
     }
 
-    // private final int ID;
+    private final int ID;
     private String username, password, email, nickname; // TODO - Sina - change password type to hash
     private SecurityQuestion passwordRecoveryQuestion;
-    private ArrayList<CardLevel> cards;
-    private ArrayList<History> records;
     private int level, maxHP, XP, money;
+    private ArrayList<CardLevel> cards;
+    private ArrayList<Integer> records;
 
     public User(String username, String password, String email, String nickname) {
+        ID = App.getUsers().get(App.getUsers().size() - 1).getID() + 1;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -51,6 +52,29 @@ public class User {
         this.maxHP = 100;
         this.XP = 0;
         this.money = 0;
+    }
+
+    public User(int iD, String username, String password, String email, String nickname,
+            SecurityQuestion passwordRecoveryQuestion, int level, int maxHP, int xP, int money,
+            ArrayList<CardLevel> cards, ArrayList<Integer> records) {
+        ID = iD;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.nickname = nickname;
+        this.passwordRecoveryQuestion = passwordRecoveryQuestion;
+        this.level = level;
+        this.maxHP = maxHP;
+        XP = xP;
+        this.money = money;
+        this.cards = cards;
+        this.records = records;
+    }
+
+
+
+    public int getID() {
+        return ID;
     }
 
     public String getUsername() {
@@ -89,7 +113,7 @@ public class User {
         return cards;
     }
 
-    public ArrayList<History> getRecords() {
+    public ArrayList<Integer> getRecords() {
         return records;
     }
 

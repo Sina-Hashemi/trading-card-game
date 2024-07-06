@@ -10,6 +10,7 @@ public class App {
     private static User loggedInUser = null;
     private static ArrayList<User> users = new ArrayList<>();
     private static ArrayList<Card> cards = new ArrayList<>();
+    private static ArrayList<History> gameHistories = new ArrayList<>();
     private static Menu currentMenu = Menu.LoginMenu;
 
     public static User getLoggedInUser() {
@@ -38,5 +39,9 @@ public class App {
 
     public static String getAdminpass() {
         return adminPass;
+    }
+
+    public static ArrayList<History> getGameHistories() {
+        return gameHistories;
     }
 }

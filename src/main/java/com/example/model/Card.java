@@ -10,15 +10,14 @@ public class Card implements Cloneable {
         None;
     }
 
-    // private final int ID;
+    private final int ID;
     private String name;
     private int attack, playerDamage;
     private int duration, basePrice, upgradeLevel, upgradeCost;
     private GameCharacter character;
 
-    public Card() {}
-
-    public Card(String name, int duration) {
+    public Card(int ID, String name, int duration) {
+        this.ID = ID;
         this.name = name;
         this.attack = 0;
         this.playerDamage = 0;
@@ -30,6 +29,19 @@ public class Card implements Cloneable {
     }
 
     public Card(String name, int attack, int playerDamage, int duration, int basePrice, int upgradeLevel, int upgradeCost, GameCharacter character) {
+        ID = App.getCards().get(App.getCards().size() - 1).getID() + 1;
+        this.name = name;
+        this.attack = attack;
+        this.playerDamage = playerDamage;
+        this.duration = duration;
+        this.basePrice = basePrice;
+        this.upgradeLevel = upgradeLevel;
+        this.upgradeCost = upgradeCost;
+        this.character = character;
+    }
+
+    public Card(int ID, String name, int attack, int playerDamage, int duration, int basePrice, int upgradeLevel, int upgradeCost, GameCharacter character) {
+        this.ID = ID;
         this.name = name;
         this.attack = attack;
         this.playerDamage = playerDamage;
@@ -122,5 +134,9 @@ public class Card implements Cloneable {
     @Override
     public Card clone() {
         return new Card(name, attack, playerDamage, duration, basePrice, upgradeLevel, upgradeCost, character);
+    }
+
+    public int getID() {
+        return ID;
     }
 }

@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.model.*;
 import com.example.model.Card.GameCharacter;
 import com.example.model.Game.PlayerVars;
+import com.example.model.History.GameResult;
 
 import java.util.Random;
 
@@ -201,44 +202,65 @@ public class GameMenuController {
 
             output += "Player One: " + " HP = " + Game.getHostPlayer().getHP() + " Damage = " + Game.getHostPlayer().getDmg() + "\n";
             output += "Player Two: " + " HP = " + Game.getGuestPlayer().getHP() + " Damage = " + Game.getGuestPlayer().getDmg() + "\n";
-        }
 
-        if(Game.getGuestPlayer().getHP() == 0) {
-            output += "Game ended! Player one won!\n";
-            Game.getHostPlayer().getPlayer().increaseXP(Game.getGuestPlayer().getPlayer().getMaxHP());
-            Game.getGuestPlayer().getPlayer().increaseXP(Game.getHostPlayer().getPlayer().getMaxHP() / 4);
-            output += "Player one earned " + Game.getGuestPlayer().getPlayer().getMaxHP() + " XP and player two earned " + (Game.getHostPlayer().getPlayer().getMaxHP() / 4) + " XP\n";
+            if(Game.getGuestPlayer().getHP() == 0) {
+                output += "Game ended! Player one won!\n";
+                Game.getHostPlayer().getPlayer().increaseXP(Game.getGuestPlayer().getPlayer().getMaxHP());
+                Game.getGuestPlayer().getPlayer().increaseXP(Game.getHostPlayer().getPlayer().getMaxHP() / 4);
+                output += "Player one earned " + Game.getGuestPlayer().getPlayer().getMaxHP() + " XP and player two earned " + (Game.getHostPlayer().getPlayer().getMaxHP() / 4) + " XP\n";
 
-            if(Game.getBet() == 0) {
-                Game.getHostPlayer().getPlayer().setMoney(Game.getHostPlayer().getPlayer().getMoney() + Game.getHostPlayer().getHP());
-                output += "Player one earned " + Game.getHostPlayer().getHP() + " money\n";
+                if(Game.getBet() == 0) {
+                    Game.getHostPlayer().getPlayer().setMoney(Game.getHostPlayer().getPlayer().getMoney() + Game.getHostPlayer().getHP());
+                    output += "Player one earned " + Game.getHostPlayer().getHP() + " money\n";
+
+                    App.getGameHistories().add(new History(Game.getGuestPlayer().getPlayer().getID(), GameResult.WON, "earned " + Game.getGuestPlayer().getPlayer().getMaxHP() + " XP" + ", " + "earned " + Game.getBet() + " money"));
+                    Game.getHostPlayer().getPlayer().getRecords().add(App.getGameHistories().get(App.getGameHistories().size() - 1).getID());
+                    App.getGameHistories().add(new History(Game.getHostPlayer().getPlayer().getID(), GameResult.LOST, "earned " + (Game.getHostPlayer().getPlayer().getMaxHP() / 4) + " XP"));
+                    Game.getGuestPlayer().getPlayer().getRecords().add(App.getGameHistories().get(App.getGameHistories().size() - 1).getID());
+                }
+                else {
+                    Game.getHostPlayer().getPlayer().setMoney(Game.getHostPlayer().getPlayer().getMoney() + Game.getBet() * 2);
+                    output += "Player one earned " + Game.getBet() + " money and player two lost " + Game.getBet() + " money\n";
+
+                    App.getGameHistories().add(new History(Game.getGuestPlayer().getPlayer().getID(), GameResult.WON, "earned " + Game.getGuestPlayer().getPlayer().getMaxHP() + " XP" + ", " + "earned " + Game.getBet() + " money"));
+                    Game.getHostPlayer().getPlayer().getRecords().add(App.getGameHistories().get(App.getGameHistories().size() - 1).getID());
+                    App.getGameHistories().add(new History(Game.getHostPlayer().getPlayer().getID(), GameResult.LOST, "earned " + (Game.getHostPlayer().getPlayer().getMaxHP() / 4) + " XP" + ", " + "lost " + Game.getBet() + " money"));
+                    Game.getGuestPlayer().getPlayer().getRecords().add(App.getGameHistories().get(App.getGameHistories().size() - 1).getID());
+                }
+
+                Game.endGame();
+                App.setCurrentMenu(Menu.MainMenu);
+                return new Result(true, output);
             }
-            else {
-                Game.getHostPlayer().getPlayer().setMoney(Game.getHostPlayer().getPlayer().getMoney() + Game.getBet() * 2);
-                output += "Player one earned " + Game.getBet() + " money and player two lost " + Game.getBet() + " money\n";
+            if(Game.getHostPlayer().getHP() == 0) {
+                output += "Game ended! Player two won!\n";
+                Game.getHostPlayer().getPlayer().increaseXP(Game.getGuestPlayer().getPlayer().getMaxHP() / 4);
+                Game.getGuestPlayer().getPlayer().increaseXP(Game.getHostPlayer().getPlayer().getMaxHP());
+                output += "Player one earned " + (Game.getGuestPlayer().getPlayer().getMaxHP() / 4) + " XP and player two earned " + Game.getHostPlayer().getPlayer().getMaxHP() + " XP\n";
+
+                if(Game.getBet() == 0) {
+                    Game.getGuestPlayer().getPlayer().setMoney(Game.getGuestPlayer().getPlayer().getMoney() + Game.getGuestPlayer().getHP());
+                    output += "Player two earned " + Game.getHostPlayer().getHP() + " money\n";
+
+                    App.getGameHistories().add(new History(Game.getGuestPlayer().getPlayer().getID(), GameResult.LOST, "earned " + (Game.getGuestPlayer().getPlayer().getMaxHP() / 4) + " XP"));
+                    Game.getHostPlayer().getPlayer().getRecords().add(App.getGameHistories().get(App.getGameHistories().size() - 1).getID());
+                    App.getGameHistories().add(new History(Game.getHostPlayer().getPlayer().getID(), GameResult.WON, "earned " + Game.getHostPlayer().getPlayer().getMaxHP() + " XP" + ", " + "earned " + Game.getBet() + " money"));
+                    Game.getGuestPlayer().getPlayer().getRecords().add(App.getGameHistories().get(App.getGameHistories().size() - 1).getID());
+                }
+                else {
+                    Game.getGuestPlayer().getPlayer().setMoney(Game.getGuestPlayer().getPlayer().getMoney() + Game.getBet() * 2);
+                    output += "Player two earned " + Game.getBet() + " money and player one lost " + Game.getBet() + " money\n";
+
+                    App.getGameHistories().add(new History(Game.getGuestPlayer().getPlayer().getID(), GameResult.LOST, "earned " + (Game.getGuestPlayer().getPlayer().getMaxHP() / 4) + " XP" + ", " + "lost " + Game.getBet() + " money"));
+                    Game.getHostPlayer().getPlayer().getRecords().add(App.getGameHistories().get(App.getGameHistories().size() - 1).getID());
+                    App.getGameHistories().add(new History(Game.getHostPlayer().getPlayer().getID(), GameResult.WON, "earned " + Game.getHostPlayer().getPlayer().getMaxHP() + " XP" + ", " + "earned " + Game.getBet() + " money"));
+                    Game.getGuestPlayer().getPlayer().getRecords().add(App.getGameHistories().get(App.getGameHistories().size() - 1).getID());
+                }
+
+                Game.endGame();
+                App.setCurrentMenu(Menu.MainMenu);
+                return new Result(true, output);
             }
-
-            Game.endGame();
-            App.setCurrentMenu(Menu.MainMenu);
-        }
-        if(Game.getHostPlayer().getHP() == 0) {
-            output += "Game ended! Player two won!\n";
-            Game.getHostPlayer().getPlayer().increaseXP(Game.getGuestPlayer().getPlayer().getMaxHP() / 4);
-            Game.getGuestPlayer().getPlayer().increaseXP(Game.getHostPlayer().getPlayer().getMaxHP());
-            output += "Player one earned " + (Game.getGuestPlayer().getPlayer().getMaxHP() / 4) + " XP and player two earned " + Game.getHostPlayer().getPlayer().getMaxHP() + " XP\n";
-
-            if(Game.getBet() == 0) {
-                Game.getGuestPlayer().getPlayer().setMoney(Game.getGuestPlayer().getPlayer().getMoney() + Game.getGuestPlayer().getHP());
-                output += "Player two earned " + Game.getHostPlayer().getHP() + " money\n";
-            }
-            else {
-                Game.getGuestPlayer().getPlayer().setMoney(Game.getGuestPlayer().getPlayer().getMoney() + Game.getBet() * 2);
-                output += "Player two earned " + Game.getBet() + " money and player one lost " + Game.getBet() + " money\n";
-            }
-
-
-            Game.endGame();
-            App.setCurrentMenu(Menu.MainMenu);
         }
 
         return new Result(true, output);
