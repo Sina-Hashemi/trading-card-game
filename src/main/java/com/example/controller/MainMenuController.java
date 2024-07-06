@@ -38,7 +38,7 @@ public class MainMenuController {
     }
 
     public static Result checkSecondUser(String password, String bet) {
-        if(!Game.getGuestPlayer().getPassword().equals(password)) {
+        if(!Game.getGuestPlayer().getPlayer().getPassword().equals(password)) {
             return new Result(false, "Password is wrong!");
         }
         int x;
@@ -47,6 +47,8 @@ public class MainMenuController {
         } catch (Exception e) {
             return new Result(false, "Bet value is not a valid number!");
         }
+        if(Game.getHostPlayer().getPlayer().getMoney() < x) return new Result(false, "Host player doesnt have enough money!");
+        if(Game.getGuestPlayer().getPlayer().getMoney() < x) return new Result(false, "Guest player doesnt have enough money!");
         Game.setBet(x);
         App.setCurrentMenu(Menu.GameMenu);
         return new Result(true, "Game started!");

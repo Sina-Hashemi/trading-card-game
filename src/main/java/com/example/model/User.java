@@ -1,11 +1,41 @@
 package com.example.model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class User {
+
+    public class CardLevel {
+        private final Card card;
+        private int Level;
+
+        public CardLevel(Card card) {
+            this.card = card;
+            this.Level = 0;
+        }
+
+        public CardLevel(Card card, int level) {
+            this.card = card;
+            Level = level;
+        }
+
+        public Card getCard() {
+            return card;
+        }
+
+        public int getLevel() {
+            return Level;
+        }
+
+        public void setLevel(int level) {
+            Level = level;
+        }
+    }
+
+    // private final int ID;
     private String username, password, email, nickname; // TODO - Sina - change password type to hash
     private SecurityQuestion passwordRecoveryQuestion;
-    private ArrayList<Card> cards;
+    private ArrayList<CardLevel> cards;
     private ArrayList<History> records;
     private int level, maxHP, XP, money;
 
@@ -55,16 +85,12 @@ public class User {
         this.nickname = nickname;
     }
 
-    public ArrayList<Card> getCards() {
+    public ArrayList<CardLevel> getCards() {
         return cards;
     }
 
     public ArrayList<History> getRecords() {
         return records;
-    }
-
-    public void setCards(ArrayList<Card> cards) {
-        this.cards = cards;
     }
 
     public int getLevel() {
@@ -110,5 +136,23 @@ public class User {
     @Override
     public String toString() {
         return username + "\t" + level + "\t" + money;
+    }
+
+    public void increaseXP(int xp) {
+        XP += xp;
+        while (XP > level * 500) {
+            XP -= level * 500;
+            levelUp();
+        }
+    }
+
+    private void levelUp() {
+        // TODO - Sina - It's not standard to print in a model class
+        level++;
+        int x = new Random().nextInt(maxHP);
+        System.out.println(nickname + " leveled up! level: " + level + " earned money: " + (maxHP + x));
+
+        money += maxHP + x;
+        maxHP *= 2;
     }
 }

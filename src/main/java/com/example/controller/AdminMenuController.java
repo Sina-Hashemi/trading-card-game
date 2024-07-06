@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.model.*;
 import com.example.model.Card.GameCharacter;
+import com.example.model.User.CardLevel;
 import com.example.enums.*;
 
 public class AdminMenuController {
@@ -32,16 +33,16 @@ public class AdminMenuController {
         // TODO - sina - handle errors
         try {
             switch (character) {
-                case "electricity":
+                case "Electricity":
                     App.getCards().add(new Card(name, Integer.parseInt(attack), Integer.parseInt(damage), Integer.parseInt(duration), Integer.parseInt(basePrice), Integer.parseInt(upgradeLevel), Integer.parseInt(upgradeCost), GameCharacter.Electricity));
                     break;
-                case "posion":
+                case "Posion":
                     App.getCards().add(new Card(name, Integer.parseInt(attack), Integer.parseInt(damage), Integer.parseInt(duration), Integer.parseInt(basePrice), Integer.parseInt(upgradeLevel), Integer.parseInt(upgradeCost), GameCharacter.Posion));
                     break;
-                case "fire":
+                case "Fire":
                     App.getCards().add(new Card(name, Integer.parseInt(attack), Integer.parseInt(damage), Integer.parseInt(duration), Integer.parseInt(basePrice), Integer.parseInt(upgradeLevel), Integer.parseInt(upgradeCost), GameCharacter.Fire));
                     break;
-                case "ice":
+                case "Ice":
                     App.getCards().add(new Card(name, Integer.parseInt(attack), Integer.parseInt(damage), Integer.parseInt(duration), Integer.parseInt(basePrice), Integer.parseInt(upgradeLevel), Integer.parseInt(upgradeCost), GameCharacter.Ice));
                     break;
 
@@ -67,8 +68,8 @@ public class AdminMenuController {
             }
         }
         for (User user : App.getUsers()) {
-            for (Card card : user.getCards()) {
-                if(card.getName().equals(name)) {
+            for (CardLevel card : user.getCards()) {
+                if(card.getCard().getName().equals(name)) {
                     user.getCards().remove(card);
                     break;
                 }

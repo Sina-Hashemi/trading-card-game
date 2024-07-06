@@ -1,6 +1,6 @@
 package com.example.model;
 
-public class Card {
+public class Card implements Cloneable {
 
     public enum GameCharacter {
         Electricity,
@@ -10,8 +10,9 @@ public class Card {
         None;
     }
 
+    // private final int ID;
     private String name;
-    private int attack, playerDamage, level;
+    private int attack, playerDamage;
     private int duration, basePrice, upgradeLevel, upgradeCost;
     private GameCharacter character;
 
@@ -21,7 +22,6 @@ public class Card {
         this.name = name;
         this.attack = 0;
         this.playerDamage = 0;
-        this.level = 0;
         this.duration = duration;
         this.basePrice = 100;
         this.upgradeLevel = 0;
@@ -33,12 +33,21 @@ public class Card {
         this.name = name;
         this.attack = attack;
         this.playerDamage = playerDamage;
-        this.level = 1;
         this.duration = duration;
         this.basePrice = basePrice;
         this.upgradeLevel = upgradeLevel;
         this.upgradeCost = upgradeCost;
         this.character = character;
+    }
+
+    public void buff() {
+        attack += 5;
+        playerDamage *= 1.25;
+    }
+
+    public void nerf() {
+        attack -= 5;
+        playerDamage /= 1.25;
     }
 
     public String getName() {
@@ -63,14 +72,6 @@ public class Card {
 
     public void setPlayerDamage(int playerDamage) {
         this.playerDamage = playerDamage;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public int getDuration() {
@@ -116,5 +117,10 @@ public class Card {
     @Override
     public String toString() {
         return name + "\t" + duration + "\t" + character;
+    }
+
+    @Override
+    public Card clone() {
+        return new Card(name, attack, playerDamage, duration, basePrice, upgradeLevel, upgradeCost, character);
     }
 }

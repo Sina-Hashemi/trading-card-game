@@ -3,7 +3,9 @@ package com.example.enums;
 import java.util.regex.*;
 
 public enum GameMenuCommands {
-    back("^back$");
+    selectCharacter("^-select character (?<character>.+)$"),
+    selectCard("^-select card (?<cardNum>.+) player (?<playerNum>.+)$"),
+    placeCard("^-place card (?<cardNum>.+) in block (?<blockNum>.+)$");
 
     private final String pattern;
 
