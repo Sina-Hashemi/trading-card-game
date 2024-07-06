@@ -1,12 +1,19 @@
 package com.example.model;
 
+import java.util.ArrayList;
+
+
+
 public class Captcha {
     private final String question, ans;
-    // TODO - ehsan - config it
+    // TODO - DONE - ehsan - config it
+
+
 
     public Captcha() {
-        this.question = "salam";
-        this.ans = "salam";
+        ArrayList<String> A =  ReturnCaptcha.captchaMaker() ;
+        this.question = A.get(0) ;
+        this.ans = A.get(1) ;
     }
 
     public String getAns() {

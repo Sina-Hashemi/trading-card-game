@@ -22,7 +22,7 @@ public enum MainMenuCommands {
 
     @Override
     public String toString() {
-        // TODO - ehsan - make it prettier
-        return pattern;
+        // TODO - DONE - ehsan - make it prettier
+        return RegexFormatter.regexToString(pattern) ;
     }
 }

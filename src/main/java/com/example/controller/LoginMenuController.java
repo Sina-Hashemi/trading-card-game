@@ -47,10 +47,18 @@ public class LoginMenuController {
     }
 
     public static Result pickQuestion(String questionNumber, String answer, String answerCnfirmation) {
-        // TODO - ehsan - handle wrong input errors
-
-        App.getUsers().get(App.getUsers().size() - 1).setPasswordRecoveryQuestion(new SecurityQuestion(Integer.parseInt(questionNumber), answer));
-        return new Result(true, "Done! Now please answer the captcha.");
+        // TODO - DONE - ehsan - handle wrong input errors
+        try {
+            int questionNumberInteger = Integer.parseInt(questionNumber);
+            if (questionNumberInteger > 3 || questionNumberInteger < 1){
+                return new Result(false,"Please choose an Integer between 1 and 3 for security question");
+            }
+            App.getUsers().get(App.getUsers().size() - 1).setPasswordRecoveryQuestion(new SecurityQuestion(questionNumberInteger, answer));
+            return new Result(true, "Done! Now please answer the captcha.");
+        }
+        catch (Exception e){
+            return new Result(false,"Please choose an Integer between 1 and 3 for security question");
+        }
     }
 
     public static Result login(String username, String password) {
