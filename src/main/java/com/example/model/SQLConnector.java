@@ -113,6 +113,7 @@ public class SQLConnector {
 
                 String[] recordss = records.split(" ");
                 for (int i = 0; i < recordss.length; i++) {
+                    if(recordss[i].equals("")) break;
                     recordList.add(Integer.parseInt(recordss[i]));
                 }
 
@@ -120,6 +121,88 @@ public class SQLConnector {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    public static void save() {
+        saveCards();
+        saveHistory();
+        saveUsers();
+    }
+
+    private static void saveHistory() {
+        for (History history : App.getGameHistories()) {
+            try {
+                String query = String.format("SELECT ID FROM GAMEHISTORY WHERE ID = %d", history.getID());
+                ResultSet resultSet = statement.executeQuery(query);
+
+                if (resultSet.next()) {
+                    query = String.format("UPDATE `GAMEHISTORY` SET `rivalID`='%d',`gameResult`='%s',`gameTime`='%s',`RewardsPenalties`='%s' WHERE ID = %d",
+                            history.getRivalID(), history.getGameResult().toString(), history.getGameTime().toString(), history.getRewardsPenalties(), history.getID());
+                    statement.executeUpdate(query);
+                }
+                else {
+                    query = String.format("INSERT INTO `GAMEHISTORY`(`ID`, `rivalID`, `gameResult`, `gameTime`, `RewardsPenalties`) VALUES ('%d','%d','%s','%s','%s')",
+                            history.getID(), history.getRivalID(), history.getGameResult().toString(), history.getGameTime().toString(), history.getRewardsPenalties());
+                    statement.executeUpdate(query);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private static void saveCards() {
+        for (Card card : App.getCards()) {
+            try {
+                String query = String.format("SELECT ID FROM CARD WHERE ID = %d", card.getID());
+                ResultSet resultSet = statement.executeQuery(query);
+
+                if (resultSet.next()) {
+                    query = String.format("UPDATE `CARD` SET `name`='%s',`attack`='%d',`damage`='%d',`duration`='%d',`price`='%d',`upLevel`='%d',`upCost`='%d',`gameChar`='%s' WHERE ID = %d",
+                            card.getName(), card.getAttack(), card.getPlayerDamage(), card.getDuration(), card.getBasePrice(), card.getUpgradeLevel(), card.getUpgradeCost(), card.getCharacter().toString(), card.getID());
+                    statement.executeUpdate(query);
+                }
+                else {
+                    query = String.format("INSERT INTO `CARD`(`ID`, `name`, `attack`, `damage`, `duration`, `price`, `upLevel`, `upCost`, `gameChar`) VALUES ('%d','%s','%d','%d','%d','%d','%d','%d','%s')",
+                            card.getID(), card.getName(), card.getAttack(), card.getPlayerDamage(), card.getDuration(), card.getBasePrice(), card.getUpgradeLevel(), card.getUpgradeCost(), card.getCharacter().toString());
+                    statement.executeUpdate(query);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private static void saveUsers() {
+        for (User user : App.getUsers()) {
+            try {
+                String query = String.format("SELECT ID FROM USER WHERE ID = %d", user.getID());
+                ResultSet resultSet = statement.executeQuery(query);
+
+                String cards = "", records = "";
+
+                for (CardLevel card : user.getCards()) {
+                    cards += card.getCard().getID() + " " + card.getLevel() + " ";
+                }cards = cards.trim();
+
+                for (Integer h : user.getRecords()) {
+                    records += h + " ";
+                }records = records.trim();
+
+                if (resultSet.next()) {
+                    query = String.format("UPDATE `USER` SET `username`='%s',`password`='%s',`nickname`='%s',`email`='%s',`passwordRecoveryQuestion`='%d',`passwordRecoveryAns`='%s',`level`='%d',`maxHP`='%d',`XP`='%d',`money`='%d',`CardLevel`='%s',`records`='%s' WHERE ID = %d",
+                            user.getUsername(), user.getPassword(), user.getNickname(), user.getEmail(), user.getPasswordRecoveryQuestion().getKey(), user.getPasswordRecoveryQuestion().getAns(), user.getLevel(), user.getMaxHP(), user.getXP(), user.getMoney(), cards, records, user.getID());
+                    statement.executeUpdate(query);
+                }
+                else {
+                    query = String.format("INSERT INTO `USER` (`ID`, `username`, `password`, `nickname`, `email`, `passwordRecoveryQuestion`, `passwordRecoveryAns`, `level`, `maxHP`, `XP`, `money`, `CardLevel`, `records`) VALUES ('%d', '%s', '%s', '%s', '%s', '%d', '%s', '%d', '%d', '%d', '%d', '%s', '%s')",
+                            user.getID(), user.getUsername(), user.getPassword(), user.getNickname(), user.getEmail(), user.getPasswordRecoveryQuestion().getKey(), user.getPasswordRecoveryQuestion().getAns(), user.getLevel(), user.getMaxHP(), user.getXP(), user.getMoney(), cards, records);
+                    statement.executeUpdate(query);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
