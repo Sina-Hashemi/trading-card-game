@@ -18,6 +18,7 @@ public class MainMenuController {
     }
 
     public static Result enterShopMenu() {
+        ShopMenuController.initialize();
         App.setCurrentMenu(Menu.ShopMenu);
         return new Result(true, "Entered shop menu!");
     }

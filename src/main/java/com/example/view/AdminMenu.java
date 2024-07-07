@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 
 import com.example.controller.AdminMenuController;
 import com.example.enums.AdminMenuCommands;
-// import com.example.model.*;
+import com.example.model.*;
 
 public class AdminMenu extends AppMenu {
 
