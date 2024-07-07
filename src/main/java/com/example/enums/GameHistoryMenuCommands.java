@@ -21,7 +21,6 @@ public enum GameHistoryMenuCommands {
 
     @Override
     public String toString() {
-        // TODO - DONE - ehsan - make it prettier
         return RegexFormatter.regexToString(pattern);
     }
 }

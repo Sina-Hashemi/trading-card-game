@@ -7,7 +7,7 @@ public class RegexFormatter {
     public static String regexToString (String pattern) {
 
         Pattern patternDash = Pattern.compile("-\\S+");
-        Pattern patternName = Pattern.compile("(\\(\\?<(?<name>[^>]+)>\\.\\+\\))");
+        Pattern patternName = Pattern.compile("(\\(\\?<(?<name>[^>]+)>.{1,5}(\\+|\\*)\\))");// "(\\(\\?<(?<name>[^>]+)>\\.\\+\\))");
         String patternCopy = pattern;
         Matcher matcherDash = patternDash.matcher(pattern);
         int dashCount = 0;
@@ -17,13 +17,13 @@ public class RegexFormatter {
         matcherDash = patternDash.matcher(pattern);
         for (int i = 0; i < dashCount; i++) {
             matcherDash.find();
-            if (i == 0) {
-                patternCopy = patternCopy.replace(matcherDash.group(0), ": Enter");
-            } else if (i == dashCount - 1) {
-                patternCopy = patternCopy.replace(matcherDash.group(0), "then");
-            } else {
-                patternCopy = patternCopy.replace(matcherDash.group(0), "and");
-            }
+            // if (i == 0) {
+            //     patternCopy = patternCopy.replace(matcherDash.group(0), ": Enter");
+            // } else if (i == dashCount - 1) {
+            //     patternCopy = patternCopy.replace(matcherDash.group(0), "then");
+            // } else {
+            //     patternCopy = patternCopy.replace(matcherDash.group(0), "and");
+            // }
         }
         Matcher matcherName = patternName.matcher(pattern);
         int nameCount = 0;
@@ -37,6 +37,6 @@ public class RegexFormatter {
         }
 
         // command ha
-        return patternCopy.substring(1, patternCopy.length() - 1);
+        return patternCopy.substring(1, patternCopy.length() - 1).replaceAll("\\\\s(\\+|\\*)", " ").trim();
     }
 }

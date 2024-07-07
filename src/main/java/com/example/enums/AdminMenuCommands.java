@@ -22,7 +22,6 @@ public enum AdminMenuCommands {
 
     @Override
     public String toString() {
-        // TODO - ehsan - make it prettier
-        return pattern;
+        return RegexFormatter.regexToString(pattern);
     }
 }

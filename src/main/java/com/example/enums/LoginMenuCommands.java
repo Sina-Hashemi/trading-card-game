@@ -24,7 +24,6 @@ public enum LoginMenuCommands { // TODO - Sina - empty input fix
 
     @Override
     public String toString() {
-        // TODO - DONE - ehsan - make it prettier
-        return RegexFormatter.regexToString(pattern) ;
+        return RegexFormatter.regexToString(pattern);
     }
 }

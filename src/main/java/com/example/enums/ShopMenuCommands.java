@@ -17,7 +17,6 @@ public enum ShopMenuCommands {
 
     @Override
     public String toString() {
-        // TODO - DONE - ehsan - make it prettier
-        return RegexFormatter.regexToString(pattern) ;
+        return RegexFormatter.regexToString(pattern);
     }
 }
