@@ -24,16 +24,9 @@ public class LoginMenu extends AppMenu {
         else if((matcher = LoginMenuCommands.LoginAsAdmin.getCommandMatcher(input)).find()) {
             System.out.println(LoginMenuController.LoginAsAdmin(matcher.group("password")));
         }
-        else if((matcher = LoginMenuCommands.Register.getCommandMatcher(input)).find()) {
-            Result result = LoginMenuController.register(matcher.group("username"), matcher.group("password"), matcher.group("passwordConfirmation"), matcher.group("email"), matcher.group("nickname").trim());
-            System.out.println(result);
-            if(result.isSuccessful()) {
-                handleQuestionAndCaptcha(scanner);
-            }
-        }
         else if((matcher = LoginMenuCommands.RegisterRandom.getCommandMatcher(input)).find()) {
             String password = new RandomPasswordGenerator().getPassword();
-            System.out.println("Your random password: " + password + "\n Please enter your password:");
+            System.out.println("Your random password: \u001B[36m" + password + "\u001B[0m\n Please enter your password:");
             while(true) {
                 System.out.print("\u001B[33m");
                 input = scanner.nextLine();
@@ -42,6 +35,13 @@ public class LoginMenu extends AppMenu {
                 System.out.println("Please try again!");
             }
             Result result = LoginMenuController.register(matcher.group("username"), password, password, matcher.group("email"), matcher.group("nickname"));
+            System.out.println(result);
+            if(result.isSuccessful()) {
+                handleQuestionAndCaptcha(scanner);
+            }
+        }
+        else if((matcher = LoginMenuCommands.Register.getCommandMatcher(input)).find()) {
+            Result result = LoginMenuController.register(matcher.group("username"), matcher.group("password"), matcher.group("passwordConfirmation"), matcher.group("email"), matcher.group("nickname").trim());
             System.out.println(result);
             if(result.isSuccessful()) {
                 handleQuestionAndCaptcha(scanner);
@@ -88,13 +88,13 @@ public class LoginMenu extends AppMenu {
         String input;
         Matcher matcher;
         Result result;
-        SecurityQuestion.printQustions();
+        System.out.print(SecurityQuestion.printQustions());
         while(true) {
             System.out.print("\u001B[33m");
             input = scanner.nextLine();
             System.out.print("\u001B[0m");
             if((matcher = LoginMenuCommands.QuestionPick.getCommandMatcher(input)).find()) {
-                result = LoginMenuController.pickQuestion(matcher.group("questionNumber"), matcher.group("answer"), matcher.group("answerCnfirmation"));
+                result = LoginMenuController.pickQuestion(matcher.group("questionNumber"), matcher.group("answer"), matcher.group("answerConfirmation"));
                 System.out.println(result);
                 if(result.isSuccessful()) break;
                 continue;

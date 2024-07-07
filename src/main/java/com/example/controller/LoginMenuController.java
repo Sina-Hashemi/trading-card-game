@@ -46,13 +46,13 @@ public class LoginMenuController {
         return new Result(true, "User created successfully. Please choose a security question :");
     }
 
-    public static Result pickQuestion(String questionNumber, String answer, String answerCnfirmation) {
-        // TODO - DONE - ehsan - handle wrong input errors
+    public static Result pickQuestion(String questionNumber, String answer, String answerConfirmation) {
         try {
             int questionNumberInteger = Integer.parseInt(questionNumber);
             if (questionNumberInteger > 3 || questionNumberInteger < 1){
                 return new Result(false,"Please choose an Integer between 1 and 3 for security question");
             }
+            if(!answer.equals(answerConfirmation)) return new Result(false, "answer and answerConfirmation doesnt match");
             App.getUsers().get(App.getUsers().size() - 1).setPasswordRecoveryQuestion(new SecurityQuestion(questionNumberInteger, answer));
             return new Result(true, "Done! Now please answer the captcha.");
         }
@@ -85,7 +85,7 @@ public class LoginMenuController {
         User user = searchUserByUsername(username);
         if(user == null) return new Result(false, "Username doesn't exist!");
 
-        return new Result(true, SecurityQuestion.questions.get(user.getPasswordRecoveryQuestion().getKey()) + "%" + user.getPasswordRecoveryQuestion().getKey());
+        return new Result(true, SecurityQuestion.questions.get(user.getPasswordRecoveryQuestion().getKey()) + "%" + user.getPasswordRecoveryQuestion().getAns());
     }
 
     public static Result resetPassword(String username, String password) {
@@ -107,7 +107,7 @@ public class LoginMenuController {
 
     public static Result checkPassword(String password) {
         if(!getCommandMatcher(password, "^.{8,20}$").find()) return new Result(false, "The password must have at least 8 characters!");
-        if(!getCommandMatcher(password, "^(?![0-9])(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[\\w!@#$%^&*]{8,20}$").find()) return new Result(false, "The password must have at least one lowercase English letter and one uppercase English letter and one number and one non-alphanumeric character!");
+        if(!getCommandMatcher(password, "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*:;\\<\\=\\>\\?\\[\\]\\\\\\_`])[\\w!@#$%^&*:;\\<\\=\\>\\?\\[\\]\\\\\\_`]{8,20}$").find()) return new Result(false, "The password must have at least one lowercase English letter and one uppercase English letter and one number and one non-alphanumeric character!"); // (?![0-9])
         return new Result(true, "");
     }
 }

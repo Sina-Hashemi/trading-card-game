@@ -27,7 +27,7 @@ public class GameMenu extends AppMenu {
         String input = scanner.nextLine();
         System.out.print("\u001B[0m");
         Matcher matcher;
-        if(input.equals("show current menu")) System.out.println("Register/Login Menu");
+        if(input.equals("show current menu")) System.out.println("Game Menu");
         else if(input.equals("show commands"))
             for (GameMenuCommands command : EnumSet.allOf(GameMenuCommands.class))
                 System.out.println(command);

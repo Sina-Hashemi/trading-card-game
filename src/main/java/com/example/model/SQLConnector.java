@@ -153,7 +153,7 @@ public class SQLConnector {
                     statement.executeUpdate(query);
                 }
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -176,7 +176,7 @@ public class SQLConnector {
                     statement.executeUpdate(query);
                 }
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -208,7 +208,7 @@ public class SQLConnector {
                     statement.executeUpdate(query);
                 }
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                System.out.println(e.getMessage());
             }
         }
     }

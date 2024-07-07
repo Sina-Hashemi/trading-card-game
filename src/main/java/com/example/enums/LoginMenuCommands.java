@@ -9,7 +9,7 @@ public enum LoginMenuCommands { // TODO - Sina - empty input fix
     QuestionPick("^question pick -q (?<questionNumber>.+) -a (?<answer>.+) -c (?<answerConfirmation>.+)$"),
     Login("^user login -u (?<username>.+) -p (?<password>.+)$"),
     LoginAsAdmin("^admin login -p (?<password>.+)$"),
-    ForgetPassword("^Forgot my password -u (?<username>.+)$"),
+    ForgetPassword("^Forget my password -u (?<username>.+)$"),
     Exit("^Exit$");
 
     private final String pattern;
