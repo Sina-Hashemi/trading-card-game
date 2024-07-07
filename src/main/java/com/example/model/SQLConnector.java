@@ -4,6 +4,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import com.example.enums.Spell;
 import com.example.model.Card.GameCharacter;
 import com.example.model.History.GameResult;
 import com.example.model.User.CardLevel;
@@ -32,6 +33,11 @@ public class SQLConnector {
     }
 
     private static void initializeCards() {
+
+        for (Spell spell : Spell.values()) {
+            App.getCards().add(spell.getCard());
+        }
+
         try {
             statement = connection.createStatement();
             String query = "SELECT * FROM CARD";
@@ -154,6 +160,7 @@ public class SQLConnector {
 
     private static void saveCards() {
         for (Card card : App.getCards()) {
+            if(card.getID() >= 1000) continue;
             try {
                 String query = String.format("SELECT ID FROM CARD WHERE ID = %d", card.getID());
                 ResultSet resultSet = statement.executeQuery(query);
