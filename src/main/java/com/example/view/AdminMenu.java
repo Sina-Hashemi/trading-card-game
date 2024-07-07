@@ -19,8 +19,8 @@ public class AdminMenu extends AppMenu {
             for (AdminMenuCommands command : EnumSet.allOf(AdminMenuCommands.class))
                 System.out.println(command);
 
-        else if((matcher = AdminMenuCommands.back.getCommandMatcher(input)).find()) {
-            System.out.println(AdminMenuController.back());
+        else if((matcher = AdminMenuCommands.logout.getCommandMatcher(input)).find()) {
+            System.out.println(AdminMenuController.logout());
         }
         else if((matcher = AdminMenuCommands.showCards.getCommandMatcher(input)).find()) {
             System.out.println(AdminMenuController.showCards());
@@ -32,13 +32,22 @@ public class AdminMenu extends AppMenu {
             System.out.println(AdminMenuController.addCard(matcher.group("name"), matcher.group("attack"), matcher.group("damage"), matcher.group("duration"), matcher.group("basePrice"), matcher.group("upgradeLevel"), matcher.group("upgradeCost"), matcher.group("character")));
         }
         else if((matcher = AdminMenuCommands.editCard.getCommandMatcher(input)).find()) {
-            System.out.println(AdminMenuController.editCard(matcher.group("name")));
+            Result result = AdminMenuController.checkCard(matcher.group("cardNum"));
+            System.out.println(result);
+            if (result.isSuccessful()) {
+                if (input.equals("Y") || input.equals("y")) {
+                    System.out.println(AdminMenuController.editCard(Integer.parseInt(matcher.group("cardNum")), matcher.group(2), matcher.group(3)));
+                }
+            }
         }
         else if((matcher = AdminMenuCommands.removeCard.getCommandMatcher(input)).find()) {
-            System.out.println("are you sure you want to delete this card?(Y/n)");
-            input = scanner.nextLine();
-            if (input.equals("Y") || input.equals("y")) {
-                System.out.println(AdminMenuController.removeCard(matcher.group("name")));
+            Result result = AdminMenuController.checkCard(matcher.group("cardNum"));
+            System.out.println(result);
+            if (result.isSuccessful()) {
+                input = scanner.nextLine();
+                if (input.equals("Y") || input.equals("y")) {
+                    System.out.println(AdminMenuController.removeCard(Integer.parseInt(matcher.group("cardNum"))));
+                }
             }
         }
 

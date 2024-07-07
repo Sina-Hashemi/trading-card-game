@@ -3,12 +3,12 @@ package com.example.enums;
 import java.util.regex.*;
 
 public enum AdminMenuCommands {
-    back("^back$"),
     showCards("^show cards$"),
     showUsers("^show users$"),
     addCard("^add card -n (?<name>.+) -a (?<attack>.+) -d (?<damage>.+) -d (?<duration>.+) -bp (?<basePrice>.+) -ul (?<upgradeLevel>.+) -uc (?<upgradeCost>.+) -c (?<character>.+)$"),
-    editCard("^edit card -n (?<name>.+)$"),
-    removeCard("^remove card -n (?<name>.+)$");
+    editCard("^edit card -id (?<cardNum>\\d+) (name|attack|playerDamage|duration|basePrice|upgradeLevel|upgradeCost|character) (.+)$"),
+    removeCard("^remove card -id (?<cardNum>.+)$"),
+    logout("^log out$");
 
     private final String pattern;
 

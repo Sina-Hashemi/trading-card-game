@@ -128,7 +128,7 @@ public class Card implements Cloneable {
 
     @Override
     public String toString() {
-        return name + "\t" + duration + "\t" + character;
+        return ID + ".\t" + name + "\t" + duration + "\t" + character;
     }
 
     @Override
