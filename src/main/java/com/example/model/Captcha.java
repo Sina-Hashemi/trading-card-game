@@ -2,13 +2,8 @@ package com.example.model;
 
 import java.util.ArrayList;
 
-
-
 public class Captcha {
     private final String question, ans;
-    // TODO - DONE - ehsan - config it
-
-
 
     public Captcha() {
         ArrayList<String> A =  ReturnCaptcha.captchaMaker() ;

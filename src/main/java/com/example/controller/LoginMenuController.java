@@ -62,7 +62,7 @@ public class LoginMenuController {
     }
 
     public static Result login(String username, String password) {
-        if(BlockingTime.remainingTime() != 0) return new Result(false, "Try again in "+ BlockingTime.remainingTime() + " seconds");
+        if(BlockingTime.remainingTime() > 0) return new Result(false, "Try again in "+ BlockingTime.remainingTime() + " seconds");
 
         if(username.equals("")) return new Result(false, "Username field is empty!");
         if(password.equals("")) return new Result(false, "Password field is empty!");
