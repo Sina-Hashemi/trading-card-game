@@ -12,6 +12,9 @@ public class MainMenu extends AppMenu {
 
     @Override
     public void check(Scanner scanner) {
+        Result starterPack = MainMenuController.StarterPack();
+        if(starterPack.isSuccessful()) System.out.println(starterPack);
+
         String input = scanner.nextLine();
         Matcher matcher;
         if(input.equals("show current menu")) System.out.println("Main Menu");
