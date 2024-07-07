@@ -63,6 +63,12 @@ public class GameMenuController {
         output += "Player One: " + " HP = " + Game.getHostPlayer().getHP() + " Damage = " + Game.getHostPlayer().getDmg() + " Remaining Turn = " + Game.getHostPlayer().getRemainTurn() + " Character = " + Game.getHostPlayer().getCharacter() + "\n";
         int n = 1;
         for (Card card : Game.getHostPlayer().getDeck()) {
+            if(Game.getHostPlayer().isHide()) {
+                output += "Your cards are hided!\n";
+                Game.getHostPlayer().setHide(false);
+                break;
+            }
+
             if(card.getCharacter() == GameCharacter.None) {
                 output += n + ": " + card.getName() + " Spell Card " + Spell.valueOf(card.getName()).getDescription() + " Duration = " + card.getDuration() + "\n";
             }
@@ -87,6 +93,12 @@ public class GameMenuController {
         output += "Player Two: " + " HP = " + Game.getGuestPlayer().getHP() + " Damage = " + Game.getGuestPlayer().getDmg() + " Remaining Turn = " + Game.getGuestPlayer().getRemainTurn() + " Character = " + Game.getGuestPlayer().getCharacter() + "\n";
         n = 1;
         for (Card card : Game.getGuestPlayer().getDeck()) {
+            if(Game.getHostPlayer().isHide()) {
+                output += "Your cards are hided!\n";
+                Game.getHostPlayer().setHide(false);
+                break;
+            }
+
             if(card.getCharacter() == GameCharacter.None) {
                 output += n + ": " + card.getName() + " Spell Card " + Spell.valueOf(card.getName()).getDescription() + " Duration = " + card.getDuration() + "\n";
             }

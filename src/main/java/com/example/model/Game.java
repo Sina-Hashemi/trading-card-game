@@ -1,6 +1,7 @@
 package com.example.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import com.example.model.Card.GameCharacter;
@@ -15,6 +16,7 @@ public class Game {
         private ArrayList<Card> deck;
         private ArrayList<Integer> wreckedHouses;
         private int HP, remainTurn, dmg, deckSize;
+        private boolean isHide;
 
         public PlayerVars(User player) {
             this.player = player;
@@ -27,6 +29,7 @@ public class Game {
             remainTurn = 4;
             dmg = 0;
             deckSize = 5;
+            isHide = false;
         }
 
         public User getPlayer() {
@@ -99,6 +102,14 @@ public class Game {
 
         public void setDeckSize(int deckSize) {
             this.deckSize = deckSize;
+        }
+
+        public boolean isHide() {
+            return isHide;
+        }
+
+        public void setHide(boolean isHide) {
+            this.isHide = isHide;
         }
     }
 
@@ -233,7 +244,8 @@ public class Game {
                 currentPlayer.deck.add(currentEnemy.deck.get(x).clone());
             }
             else if(currentPlayer.deck.get(cardNum).getName().equals("Hider")) {
-                // TODO - sina
+                currentEnemy.isHide = true;
+                Collections.shuffle(currentEnemy.deck);
             }
         }
         else {
@@ -292,6 +304,9 @@ public class Game {
             hostPlayer.dmg -= hostPlayer.map[i].getPlayerDamage();
             guestPlayer.HP -= hostPlayer.map[i].getPlayerDamage();
         }
+
+        if(hostPlayer.map[i].getName().equals("Heal")) hostPlayer.HP += 50;
+        if(guestPlayer.map[i].getName().equals("Heal")) guestPlayer.HP += 50;
 
         if(hostPlayer.HP < 0) hostPlayer.HP = 0;
         if(guestPlayer.HP < 0) guestPlayer.HP = 0;
