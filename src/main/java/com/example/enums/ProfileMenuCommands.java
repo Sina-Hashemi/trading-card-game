@@ -7,8 +7,8 @@ public enum ProfileMenuCommands { // TODO - Sina - empty input fix
     info("^Show information$"),
     changeUsername("^Profile change -u (?<username>.+)$"),
     changeNickname("^Profile change -n (?<nickname>.+)$"),
-    changePassword("^profile change password -o (?<oldPassword>.+) -n (?<newPassword>.+) (?<passwordConfirmation>.+)$"),
-    changePasswordRandom("^profile change password -o (?<oldPassword>.+) random)$"),
+    changePassword("^Profile change password -o (?<oldPassword>.+) -n (?<newPassword>.+) (?<passwordConfirmation>.+)$"),
+    changePasswordRandom("^Profile change password -o (?<oldPassword>.+) -n random$"),
     changeEmail("^Profile change -e (?<email>.+)$");
 
     private final String pattern;

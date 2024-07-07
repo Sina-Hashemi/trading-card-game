@@ -18,41 +18,17 @@ public class GameMenuController {
 
     public static Result handleCharacter(String character) {
         if(Game.getHostPlayer().getCharacter() == GameCharacter.None) {
-            switch (character) {
-                case "Electricity":
-                    Game.getHostPlayer().setCharacter(GameCharacter.Electricity);
-                    break;
-                    case "Posion":
-                    Game.getHostPlayer().setCharacter(GameCharacter.Posion);
-                    break;
-                    case "Fire":
-                    Game.getHostPlayer().setCharacter(GameCharacter.Fire);
-                    break;
-                    case "Ice":
-                    Game.getHostPlayer().setCharacter(GameCharacter.Ice);
-                    break;
-
-                default:
-                    return new Result(false, "wrong character!");
+            try {
+                Game.getHostPlayer().setCharacter(GameCharacter.valueOf(character));
+            } catch (Exception e) {
+                return new Result(false, "wrong character!");
             }
             return new Result(true, "Host character set successfully");
         }
-        switch (character) {
-            case "Electricity":
-                Game.getCurrentPlayer().setCharacter(GameCharacter.Electricity);
-                break;
-                case "Posion":
-                Game.getCurrentPlayer().setCharacter(GameCharacter.Posion);
-                break;
-                case "Fire":
-                Game.getCurrentPlayer().setCharacter(GameCharacter.Fire);
-                break;
-                case "Ice":
-                Game.getCurrentPlayer().setCharacter(GameCharacter.Ice);
-                break;
-
-            default:
-                return new Result(false, "wrong character!");
+        try {
+            Game.getGuestPlayer().setCharacter(GameCharacter.valueOf(character));
+        } catch (Exception e) {
+            return new Result(false, "wrong character!");
         }
         return new Result(true, "Guest character set successfully");
     }
@@ -60,7 +36,7 @@ public class GameMenuController {
     public static Result showGame() {
         String output = "";
 
-        output += "Player One: " + " HP = " + Game.getHostPlayer().getHP() + " Damage = " + Game.getHostPlayer().getDmg() + " Remaining Turn = " + Game.getHostPlayer().getRemainTurn() + " Character = " + Game.getHostPlayer().getCharacter() + "\n";
+        output += "\u001B[34mPlayer One: \u001B[0m" + "\u001B[31m HP = " + Game.getHostPlayer().getHP() + "\u001B[32m Damage = " + Game.getHostPlayer().getDmg() + "\u001B[35m Remaining Turn = " + Game.getHostPlayer().getRemainTurn() + "\u001B[0m Character = " + Game.getHostPlayer().getCharacter() + "\n";
         int n = 1;
         for (Card card : Game.getHostPlayer().getDeck()) {
             if(Game.getHostPlayer().isHide()) {
@@ -70,27 +46,35 @@ public class GameMenuController {
             }
 
             if(card.getCharacter() == GameCharacter.None) {
-                output += n + ": " + card.getName() + " Spell Card " + Spell.valueOf(card.getName()).getDescription() + " Duration = " + card.getDuration() + "\n";
+                output += String.format("%d: %-15s \u001B[36m Duration = %-5d\u001B[0m %-25s\n", n, card.getName(), card.getDuration(), Spell.valueOf(card.getName()).getDescription());
             }
             else {
-                output += n + ": " + card.getName() + " Normal Card" + " Duration = " + card.getDuration() + " Player Damage = " + card.getPlayerDamage() + "Attack/Defense point =" + card.getAttack() + "\n";
+                output += String.format("%d: %-15s \u001B[36m Duration = %-5d \u001B[31m Damage = %-5d \u001B[32m A/D point = %-5d\u001B[0m\n", n, card.getName(), card.getDuration(), card.getPlayerDamage(), card.getAttack());
             }
             n++;
         }
 
         for (int i = 0; i < 21; i++) {
-            output += "Row" + (i + 1) + ":\t";
-            if(Game.getHostPlayer().getWreckedHouses().contains(i)) output += "Wrecked";
-            else if(Game.getHostPlayer().getMap()[i] == null) output += "Empty";
-            else output += "Dmg " + Game.getHostPlayer().getMap()[i].getPlayerDamage() + " A/D " + Game.getHostPlayer().getMap()[i].getAttack();
-            output += "\t";
-            if(Game.getGuestPlayer().getWreckedHouses().contains(i)) output += "Wrecked";
-            else if(Game.getGuestPlayer().getMap()[i] == null) output += "Empty";
-            else output += "Dmg " + Game.getGuestPlayer().getMap()[i].getPlayerDamage() + " A/D " + Game.getGuestPlayer().getMap()[i].getAttack();
-            output += "\n";
+            output += String.format("\u001B[47m\u001B[30mRow%-2d:\u001B[0m\t", (i + 1));
+            String x = "", y = "";
+            if(Game.getHostPlayer().getWreckedHouses().contains(i)) x += "Wrecked";
+            else if(Game.getHostPlayer().getMap()[i] == null) x += "Empty";
+            else if(Game.getHostPlayer().getMap()[i].getCharacter() == GameCharacter.None) x += Game.getHostPlayer().getMap()[i].getName();
+            // else x += "Dmg " + Game.getHostPlayer().getMap()[i].getPlayerDamage() + " A/D " + Game.getHostPlayer().getMap()[i].getAttack();
+            // else x += String.format("\u001B[31mDmg %-5d \u001B[32mA/D %-5d\u001B[0m", Game.getHostPlayer().getMap()[i].getPlayerDamage(), Game.getHostPlayer().getMap()[i].getAttack());
+            else x += "\u001B[31mDmg " + Game.getHostPlayer().getMap()[i].getPlayerDamage() + " \u001B[32mA/D " + Game.getHostPlayer().getMap()[i].getAttack() + "\u001B[0m";
+
+            if(Game.getGuestPlayer().getWreckedHouses().contains(i)) y += "Wrecked";
+            else if(Game.getGuestPlayer().getMap()[i] == null) y += "Empty";
+            else if(Game.getGuestPlayer().getMap()[i].getCharacter() == GameCharacter.None) y += Game.getGuestPlayer().getMap()[i].getName();
+            // else y += "Dmg " + Game.getGuestPlayer().getMap()[i].getPlayerDamage() + " A/D " + Game.getGuestPlayer().getMap()[i].getAttack();
+            // else y += String.format("\u001B[31mDmg %-5d \u001B[32mA/D %-5d\u001B[0m", Game.getGuestPlayer().getMap()[i].getPlayerDamage(), Game.getGuestPlayer().getMap()[i].getAttack());
+            else y += "\u001B[31mDmg " + Game.getGuestPlayer().getMap()[i].getPlayerDamage() + " \u001B[32mA/D " + Game.getGuestPlayer().getMap()[i].getAttack() + "\u001B[0m";
+
+            output += String.format("%-50s %-50s \n", x, y);
         }
 
-        output += "Player Two: " + " HP = " + Game.getGuestPlayer().getHP() + " Damage = " + Game.getGuestPlayer().getDmg() + " Remaining Turn = " + Game.getGuestPlayer().getRemainTurn() + " Character = " + Game.getGuestPlayer().getCharacter() + "\n";
+        output += "\u001B[34mPlayer Two: \u001B[0m" + "\u001B[31m HP = " + Game.getGuestPlayer().getHP() + "\u001B[32m Damage = " + Game.getGuestPlayer().getDmg() + "\u001B[35m Remaining Turn = " + Game.getGuestPlayer().getRemainTurn() + "\u001B[0m Character = " + Game.getGuestPlayer().getCharacter() + "\n";
         n = 1;
         for (Card card : Game.getGuestPlayer().getDeck()) {
             if(Game.getHostPlayer().isHide()) {
@@ -100,10 +84,10 @@ public class GameMenuController {
             }
 
             if(card.getCharacter() == GameCharacter.None) {
-                output += n + ": " + card.getName() + " Spell Card " + Spell.valueOf(card.getName()).getDescription() + " Duration = " + card.getDuration() + "\n";
+                output += String.format("%d: %-15s \u001B[36m Duration = %-5d\u001B[0m %-25s\n", n, card.getName(), card.getDuration(), Spell.valueOf(card.getName()).getDescription());
             }
             else {
-                output += n + ": " + card.getName() + " Normal Card" + " Duration = " + card.getDuration() + " Player Damage = " + card.getPlayerDamage() + "Attack/Defense point =" + card.getAttack() + "\n";
+                output += String.format("%d: %-15s \u001B[36m Duration = %-5d \u001B[31m Damage = %-5d \u001B[32m A/D point = %-5d\u001B[0m\n", n, card.getName(), card.getDuration(), card.getPlayerDamage(), card.getAttack());
             }
             n++;
         }

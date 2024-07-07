@@ -109,12 +109,12 @@ public class SQLConnector {
                 for (int i = 0; i < cardLevels.length / 2; i++) {
                     Card card = null;
                     for (Card tempCard : App.getCards()) {
-                        if(tempCard.getID() == Integer.parseInt(cardLevels[i])) {
+                        if(tempCard.getID() == Integer.parseInt(cardLevels[i * 2])) {
                             card = tempCard;
                             break;
                         }
                     }
-                    cards.add(new CardLevel(card, Integer.parseInt(cardLevels[i + 1])));
+                    cards.add(new CardLevel(card, Integer.parseInt(cardLevels[i * 2 + 1])));
                 }
 
                 String[] recordss = records.split(" ");

@@ -309,8 +309,8 @@ public class Game {
             guestPlayer.HP -= hostPlayer.map[i].getPlayerDamage();
         }
 
-        if(hostPlayer.map[i].getName().equals("Heal")) hostPlayer.HP += 50;
-        if(guestPlayer.map[i].getName().equals("Heal")) guestPlayer.HP += 50;
+        if(hostPlayer.map[i] != null && hostPlayer.map[i].getName().equals("Heal")) hostPlayer.HP += 50;
+        if(guestPlayer.map[i] != null && guestPlayer.map[i].getName().equals("Heal")) guestPlayer.HP += 50;
 
         if(hostPlayer.HP < 0) hostPlayer.HP = 0;
         if(guestPlayer.HP < 0) guestPlayer.HP = 0;

@@ -51,7 +51,7 @@ public class User {
         this.level = 1;
         this.maxHP = 100;
         this.XP = 0;
-        this.money = 0;
+        this.money = 100;
     }
 
     public User(int iD, String username, String password, String email, String nickname,

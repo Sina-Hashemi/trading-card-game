@@ -11,7 +11,7 @@ public class ShopMenu extends AppMenu {
 
     @Override
     public void check(Scanner scanner) {
-        System.out.println(ShopMenuController.status());
+        System.out.println("\u001B[36m" + ShopMenuController.status() + "\u001B[0m");
 
         System.out.print("\u001B[33m");
         String input = scanner.nextLine();

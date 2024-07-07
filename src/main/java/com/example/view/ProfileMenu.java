@@ -33,9 +33,20 @@ public class ProfileMenu extends AppMenu {
         else if ((matcher = ProfileMenuCommands.changeNickname.getCommandMatcher(input)).find()) {
             System.out.println(ProfileMenuController.changeNickname(matcher.group("nickname")));
         }
-        else if ((matcher = ProfileMenuCommands.changePassword.getCommandMatcher(input)).find()) {
-            Result result = ProfileMenuController.changePassword(matcher.group("oldPassword"), matcher.group("newPassword"), matcher.group("passwordConfirmation"));
+        else if ((matcher = ProfileMenuCommands.changePasswordRandom.getCommandMatcher(input)).find()) {
+            String password = new RandomPasswordGenerator().getPassword();
+            System.out.println("Your random password: \u001B[36m" + password + "\u001B[0m\n Please enter your password:");
+            while(true) {
+                System.out.print("\u001B[33m");
+                input = scanner.nextLine();
+                System.out.print("\u001B[0m");
+                if(password.equals(input)) break;
+                System.out.println("Please try again!");
+            }
+
+            Result result = ProfileMenuController.changePassword(matcher.group("oldPassword"), password, password);
             if(!result.isSuccessful()) {
+                // shouldn't happen!
                 System.out.println(result);
                 return;
             }
@@ -52,20 +63,9 @@ public class ProfileMenu extends AppMenu {
                 System.out.println("Captcha entered incorrectly. Try again!");
             }
         }
-        else if ((matcher = ProfileMenuCommands.changePasswordRandom.getCommandMatcher(input)).find()) {
-            String password = new RandomPasswordGenerator().getPassword();
-            System.out.println("Your random password: " + password + "\n Please enter your password:");
-            while(true) {
-                System.out.print("\u001B[33m");
-                input = scanner.nextLine();
-                System.out.print("\u001B[0m");
-                if(password.equals(input)) break;
-                System.out.println("Please try again!");
-            }
-
-            Result result = ProfileMenuController.changePassword(matcher.group("oldPassword"), password, password);
+        else if ((matcher = ProfileMenuCommands.changePassword.getCommandMatcher(input)).find()) {
+            Result result = ProfileMenuController.changePassword(matcher.group("oldPassword"), matcher.group("newPassword"), matcher.group("passwordConfirmation"));
             if(!result.isSuccessful()) {
-                // shouldn't happen!
                 System.out.println(result);
                 return;
             }

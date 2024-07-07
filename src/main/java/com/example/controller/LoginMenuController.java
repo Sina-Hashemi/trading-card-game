@@ -107,7 +107,7 @@ public class LoginMenuController {
 
     public static Result checkPassword(String password) {
         if(!getCommandMatcher(password, "^.{8,20}$").find()) return new Result(false, "The password must have at least 8 characters!");
-        if(!getCommandMatcher(password, "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*:;\\<\\=\\>\\?\\[\\]\\\\\\_`])[\\w!@#$%^&*:;\\<\\=\\>\\?\\[\\]\\\\\\_`]{8,20}$").find()) return new Result(false, "The password must have at least one lowercase English letter and one uppercase English letter and one number and one non-alphanumeric character!"); // (?![0-9])
+        if(!getCommandMatcher(password, "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*:;\\<\\=\\>\\?\\[\\]\\\\\\_`\\(\\)])[\\w!@#$%^&*:;\\<\\=\\>\\?\\[\\]\\\\\\_`\\\\(\\\\)]{8,20}$").find()) return new Result(false, "The password must have at least one lowercase English letter and one uppercase English letter and one number and one non-alphanumeric character!"); // (?![0-9])
         return new Result(true, "");
     }
 }

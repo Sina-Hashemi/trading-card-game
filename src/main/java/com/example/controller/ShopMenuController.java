@@ -40,9 +40,8 @@ public class ShopMenuController {
         for (Card card : purchaseableCards) {
             String color = "\u001B[32m";
             if(App.getLoggedInUser().getMoney() < card.getBasePrice()) color = "\u001B[31m";
-            output += card.getName() + " A/D point:" + card.getAttack() + " Damage: " + card.getPlayerDamage() + " Duration: " + card.getDuration() + " Character: " + card.getCharacter() + " Price: " + color + card.getBasePrice() + "\u001B[0m\n";
+            output += String.format("%-20s A/D point: %-5d Damage: %-5d Duration: %-5d Character: %-15s Price: " + color + "%-5d \u001B[0m\n", card.getName(), card.getAttack(), card.getPlayerDamage(), card.getDuration(), card.getCharacter(), card.getBasePrice());
         }
-
         return new Result(true, output);
     }
 
@@ -53,9 +52,9 @@ public class ShopMenuController {
             String levelColor = "\u001B[32m", moneyColor = "\u001B[32m";
             if(App.getLoggedInUser().getLevel() < card.getCard().getUpgradeLevel()) levelColor = "\u001B[31m";
             if(App.getLoggedInUser().getMoney() < card.getCard().getUpgradeCost() * card.getLevel()) moneyColor = "\u001B[31m";
-            output += card.getCard().getName() + " A/D point:" + card.getCard().getAttack() + " -> " + (card.getCard().getAttack() + 5) + " Damage: " + card.getCard().getPlayerDamage() + " -> " + ((int) card.getCard().getPlayerDamage() * 1.25) + " Duration: " + card.getCard().getDuration() + " Character: " + card.getCard().getCharacter() + " Upgrade Price: " + moneyColor + (card.getCard().getUpgradeCost() * card.getLevel()) + "\u001B[0m min Upgrade Level needed" + levelColor + card.getCard().getUpgradeLevel() + "\u001B[0m\n";
+            int x = (int) (card.getCard().getPlayerDamage() * 1.25);
+            output += String.format("%-20s A/D point: %d -> %-5d Damage: %d -> %-5d Duration: %-5d Character: %-15s Upgrade Price: " + moneyColor + "%-5d \u001B[0m min Upgrade Level: " + levelColor + "%-5d \u001B[0m\n", card.getCard().getName(), card.getCard().getAttack(), (card.getCard().getAttack() + 5), card.getCard().getPlayerDamage(), x, card.getCard().getDuration(), card.getCard().getCharacter(), (card.getCard().getUpgradeCost() * card.getLevel()), card.getCard().getUpgradeLevel());
         }
-
         return new Result(true, output);
     }
 
@@ -84,7 +83,7 @@ public class ShopMenuController {
                 App.getLoggedInUser().setMoney(App.getLoggedInUser().getMoney() - card.getCard().getUpgradeCost() * card.getLevel());
                 card.setLevel(card.getLevel() + 1);
 
-                return new Result(true, "card bought successfully!");
+                return new Result(true, "card upgraded successfully!");
             }
         }
         return new Result(false, "Wrong card name!");

@@ -3,7 +3,6 @@ import java.util.Random;
 
 public class RandomPasswordGenerator {
     private final String password;
-    // TODO - ehsan - config it
 
     public RandomPasswordGenerator() {
         long seed = System.currentTimeMillis();
@@ -21,7 +20,6 @@ public class RandomPasswordGenerator {
         for (int i = 0; i < 2; i++) {
             password += (char) (random.nextInt(75) + 48);
         }
-        System.out.println(password);
         this.password = password;
     }
 
