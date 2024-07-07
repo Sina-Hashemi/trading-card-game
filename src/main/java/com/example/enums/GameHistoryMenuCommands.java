@@ -7,6 +7,7 @@ public enum GameHistoryMenuCommands {
     sort("^sort (Date|winLose|opponentName|opponentLevel) (ascending|descending)$"),
     changePage("^(naxt|previous) page$"),
     changePageByNum("^go to page (?<pageNum>\\d+)$"),
+    challengeAgain("^challenge again -u (?<username>.+)$"),
     back("^back$");
 
     private final String pattern;

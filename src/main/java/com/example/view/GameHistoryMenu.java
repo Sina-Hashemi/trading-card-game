@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 
 import com.example.controller.GameHistoryMenuController;
+import com.example.controller.MainMenuController;
 import com.example.enums.GameHistoryMenuCommands;
 import com.example.model.*;
 
@@ -33,6 +34,14 @@ public class GameHistoryMenu extends AppMenu {
         }
         else if((matcher = GameHistoryMenuCommands.changePageByNum.getCommandMatcher(input)).find()) {
             System.out.println(GameHistoryMenuController.changePageByNum(matcher.group("pageNum")));
+        }
+        else if((matcher = GameHistoryMenuCommands.challengeAgain.getCommandMatcher(input)).find()) {
+            Result result = MainMenuController.preparePlayerTwo(matcher.group("username"));
+            System.out.println(result);
+            if(result.isSuccessful()) {
+                input = scanner.nextLine();
+                System.out.println(MainMenuController.checkSecondUser(input, "0"));
+            }
         }
 
         else System.out.println("Invalid command!");

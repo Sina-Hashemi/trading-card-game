@@ -12,7 +12,8 @@ public enum Spell {
     CardRemover(new Card(1006, "CardRemover", 0), "Steal one of opponent cards"),
     CardNerfer(new Card(1007, "CardNerfer", 0), "Nerf one of Opponent cards"),
     Copier(new Card(1008, "Copier", 0), "Copy one of opponent card"),
-    Hider(new Card(1009, "Hider", 0), "Hide Opponent cards");
+    Hider(new Card(1009, "Hider", 0), "Hide Opponent cards"),
+    FirstBlood(new Card(1010, "FirstBlood", 1), "Place it in first house to buff it");
 
     private final Card card;
     private final String description;

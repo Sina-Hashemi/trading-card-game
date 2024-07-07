@@ -247,6 +247,10 @@ public class Game {
                 currentEnemy.isHide = true;
                 Collections.shuffle(currentEnemy.deck);
             }
+            else if(currentPlayer.deck.get(cardNum).getName().equals("FirstBlood")) {
+                if(blockNum == 0) currentPlayer.deck.get(cardNum).buff();
+                currentPlayer.map[blockNum] = currentPlayer.deck.get(cardNum);
+            }
         }
         else {
             for (int i = 0; i < currentPlayer.deck.get(cardNum).getDuration(); i++) {
