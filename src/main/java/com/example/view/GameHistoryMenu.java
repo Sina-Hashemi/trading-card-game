@@ -12,6 +12,9 @@ public class GameHistoryMenu extends AppMenu {
 
     @Override
     public void check(Scanner scanner) {
+
+        System.out.println(GameHistoryMenuController.showBoard());
+
         String input = scanner.nextLine();
         Matcher matcher;
         if(input.equals("show current menu")) System.out.println("Register/Login Menu");
@@ -21,6 +24,15 @@ public class GameHistoryMenu extends AppMenu {
 
         else if((matcher = GameHistoryMenuCommands.back.getCommandMatcher(input)).find()) {
             System.out.println(GameHistoryMenuController.back());
+        }
+        else if((matcher = GameHistoryMenuCommands.sort.getCommandMatcher(input)).find()) {
+            System.out.println(GameHistoryMenuController.sort(matcher.group(1), matcher.group(2)));
+        }
+        else if((matcher = GameHistoryMenuCommands.changePage.getCommandMatcher(input)).find()) {
+            System.out.println(GameHistoryMenuController.changePage(matcher.group(1)));
+        }
+        else if((matcher = GameHistoryMenuCommands.changePageByNum.getCommandMatcher(input)).find()) {
+            System.out.println(GameHistoryMenuController.changePageByNum(matcher.group("pageNum")));
         }
 
         else System.out.println("Invalid command!");

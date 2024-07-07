@@ -5,11 +5,12 @@ import java.time.LocalDateTime;
 public class History {
 
     public enum GameResult {
-        WON,
-        LOST
+        LOST,
+        WON
     }
 
     private final int ID, rivalID;
+    private User rival = null;
     private final GameResult gameResult;
     private final LocalDateTime gameTime;
     private final String RewardsPenalties;
@@ -20,6 +21,13 @@ public class History {
         this.gameResult = gameResult;
         this.gameTime = gameTime;
         RewardsPenalties = rewardsPenalties;
+
+        for (User user : App.getUsers()) {
+            if(user.getID() == rivalID) {
+                rival = user;
+                break;
+            }
+        }
     }
 
     public History(int rivalID, GameResult gameResult, String rewardsPenalties) {
@@ -28,18 +36,21 @@ public class History {
         this.gameResult = gameResult;
         this.gameTime = LocalDateTime.now();
         RewardsPenalties = rewardsPenalties;
-    }
 
-    @Override
-    public String toString() {
-        User rival = null;
         for (User user : App.getUsers()) {
             if(user.getID() == rivalID) {
                 rival = user;
                 break;
             }
         }
-        return gameTime.toString() + " " + gameResult + " " + rival.getUsername() + " " + rival.getLevel() + " " + RewardsPenalties;
+    }
+
+    @Override
+    public String toString() {
+        if(gameResult == GameResult.WON)
+        return gameTime.toString() + " \u001B[32m" + gameResult + "\u001B[0m " + rival.getUsername() + " " + rival.getLevel() + " " + RewardsPenalties;
+        else
+        return gameTime.toString() + " \u001B[31m" + gameResult + "\u001B[0m " + rival.getUsername() + " " + rival.getLevel() + " " + RewardsPenalties;
     }
 
     public int getID() {
@@ -60,5 +71,9 @@ public class History {
 
     public String getRewardsPenalties() {
         return RewardsPenalties;
+    }
+
+    public User getRival() {
+        return rival;
     }
 }

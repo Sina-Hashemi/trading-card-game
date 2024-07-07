@@ -1,8 +1,12 @@
 package com.example.enums;
 
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public enum GameHistoryMenuCommands {
+    sort("^sort (Date|winLose|opponentName|opponentLevel) (ascending|descending)$"),
+    changePage("^(naxt|previous) page$"),
+    changePageByNum("^go to page (?<pageNum>\\d+)$"),
     back("^back$");
 
     private final String pattern;
