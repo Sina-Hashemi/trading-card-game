@@ -6,7 +6,6 @@ import java.util.regex.Matcher;
 
 import com.example.controller.GameMenuController;
 import com.example.enums.GameMenuCommands;
-import com.example.model.*;
 import com.example.model.Card.GameCharacter;
 
 public class GameMenu extends AppMenu {
@@ -24,7 +23,9 @@ public class GameMenu extends AppMenu {
             System.out.println(GameMenuController.showNowPlayer());
         }
 
+        System.out.print("\u001B[33m");
         String input = scanner.nextLine();
+        System.out.print("\u001B[0m");
         Matcher matcher;
         if(input.equals("show current menu")) System.out.println("Register/Login Menu");
         else if(input.equals("show commands"))

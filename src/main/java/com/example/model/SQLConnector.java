@@ -25,7 +25,7 @@ public class SQLConnector {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Database connected");
+        System.out.println("\u001B[31mDatabase connected\u001B[0m");
 
         initializeCards();
         initializeHistory();

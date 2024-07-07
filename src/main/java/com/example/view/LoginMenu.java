@@ -12,7 +12,9 @@ public class LoginMenu extends AppMenu {
 
     @Override
     public void check(Scanner scanner) {
+        System.out.print("\u001B[33m");
         String input = scanner.nextLine();
+        System.out.print("\u001B[0m");
         Matcher matcher;
         if(input.equals("show current menu")) System.out.println("Register/Login Menu");
         else if(input.equals("show commands"))
@@ -33,7 +35,9 @@ public class LoginMenu extends AppMenu {
             String password = new RandomPasswordGenerator().getPassword();
             System.out.println("Your random password: " + password + "\n Please enter your password:");
             while(true) {
+                System.out.print("\u001B[33m");
                 input = scanner.nextLine();
+                System.out.print("\u001B[0m");
                 if(password.equals(input)) break;
                 System.out.println("Please try again!");
             }
@@ -52,11 +56,15 @@ public class LoginMenu extends AppMenu {
             if(result.isSuccessful()) {
                 while (true) {
                     System.out.println(result.getMessage().split("%")[0]);
+                    System.out.print("\u001B[33m");
                     input = scanner.nextLine();
+                    System.out.print("\u001B[0m");
                     if(result.getMessage().split("%")[1].equals(input)) {
                         while(true) {
                             System.out.println("Enter new password:");
+                            System.out.print("\u001B[33m");
                             input = scanner.nextLine();
+                            System.out.print("\u001B[0m");
                             result = LoginMenuController.resetPassword(username, input);
                             System.out.println(result);
                             if(result.isSuccessful()) break;
@@ -82,7 +90,9 @@ public class LoginMenu extends AppMenu {
         Result result;
         SecurityQuestion.printQustions();
         while(true) {
+            System.out.print("\u001B[33m");
             input = scanner.nextLine();
+            System.out.print("\u001B[0m");
             if((matcher = LoginMenuCommands.QuestionPick.getCommandMatcher(input)).find()) {
                 result = LoginMenuController.pickQuestion(matcher.group("questionNumber"), matcher.group("answer"), matcher.group("answerCnfirmation"));
                 System.out.println(result);
@@ -94,7 +104,9 @@ public class LoginMenu extends AppMenu {
         while(true) {
             Captcha captcha = new Captcha();
             System.out.println(captcha);
+            System.out.print("\u001B[33m");
             input = scanner.nextLine();
+            System.out.print("\u001B[0m");
             if(input.equals(captcha.getAns())) {
                 System.out.println("Everything is alright. Let's go!");
                 break;

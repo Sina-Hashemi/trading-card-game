@@ -15,7 +15,9 @@ public class MainMenu extends AppMenu {
         Result starterPack = MainMenuController.StarterPack();
         if(starterPack.isSuccessful()) System.out.println(starterPack);
 
+        System.out.print("\u001B[33m");
         String input = scanner.nextLine();
+        System.out.print("\u001B[0m");
         Matcher matcher;
         if(input.equals("show current menu")) System.out.println("Main Menu");
         else if(input.equals("show commands"))
@@ -26,7 +28,9 @@ public class MainMenu extends AppMenu {
             Result result = MainMenuController.preparePlayerTwo(matcher.group("username"));
             System.out.println(result);
             if(result.isSuccessful()) {
+                System.out.print("\u001B[33m");
                 input = scanner.nextLine();
+                System.out.print("\u001B[0m");
                 System.out.println(MainMenuController.checkSecondUser(input, "0"));
             }
         }
@@ -34,7 +38,9 @@ public class MainMenu extends AppMenu {
             Result result = MainMenuController.preparePlayerTwo(matcher.group("username"));
             System.out.println(result);
             if(result.isSuccessful()) {
+                System.out.print("\u001B[33m");
                 input = scanner.nextLine();
+                System.out.print("\u001B[0m");
                 System.out.println(MainMenuController.checkSecondUser(input, matcher.group("bet")));
             }
         }

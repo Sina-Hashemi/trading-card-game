@@ -12,7 +12,9 @@ public class AdminMenu extends AppMenu {
 
     @Override
     public void check(Scanner scanner) {
+        System.out.print("\u001B[33m");
         String input = scanner.nextLine();
+        System.out.print("\u001B[0m");
         Matcher matcher;
         if(input.equals("show current menu")) System.out.println("Register/Login Menu");
         else if(input.equals("show commands"))
@@ -44,7 +46,9 @@ public class AdminMenu extends AppMenu {
             Result result = AdminMenuController.checkCard(matcher.group("cardNum"));
             System.out.println(result);
             if (result.isSuccessful()) {
+                System.out.print("\u001B[33m");
                 input = scanner.nextLine();
+                System.out.print("\u001B[0m");
                 if (input.equals("Y") || input.equals("y")) {
                     System.out.println(AdminMenuController.removeCard(Integer.parseInt(matcher.group("cardNum"))));
                 }

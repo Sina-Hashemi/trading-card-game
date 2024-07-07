@@ -12,7 +12,9 @@ public class ProfileMenu extends AppMenu {
 
     @Override
     public void check(Scanner scanner) {
+        System.out.print("\u001B[33m");
         String input = scanner.nextLine();
+        System.out.print("\u001B[0m");
         Matcher matcher;
         if(input.equals("show current menu")) System.out.println("Profile Menu");
         else if(input.equals("show commands"))
@@ -40,7 +42,9 @@ public class ProfileMenu extends AppMenu {
             while(true) {
                 Captcha captcha = new Captcha();
                 System.out.println(captcha);
+                System.out.print("\u001B[33m");
                 input = scanner.nextLine();
+                System.out.print("\u001B[0m");
                 if(input.equals(captcha.getAns())) {
                     System.out.println(result);
                     break;
@@ -52,7 +56,9 @@ public class ProfileMenu extends AppMenu {
             String password = new RandomPasswordGenerator().getPassword();
             System.out.println("Your random password: " + password + "\n Please enter your password:");
             while(true) {
+                System.out.print("\u001B[33m");
                 input = scanner.nextLine();
+                System.out.print("\u001B[0m");
                 if(password.equals(input)) break;
                 System.out.println("Please try again!");
             }
@@ -66,7 +72,9 @@ public class ProfileMenu extends AppMenu {
             while(true) {
                 Captcha captcha = new Captcha();
                 System.out.println(captcha);
+                System.out.print("\u001B[33m");
                 input = scanner.nextLine();
+                System.out.print("\u001B[0m");
                 if(input.equals(captcha.getAns())) {
                     System.out.println(result);
                     break;

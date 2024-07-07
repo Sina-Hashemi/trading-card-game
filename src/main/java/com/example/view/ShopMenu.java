@@ -6,7 +6,6 @@ import java.util.regex.Matcher;
 
 import com.example.controller.ShopMenuController;
 import com.example.enums.ShopMenuCommands;
-import com.example.model.*;
 
 public class ShopMenu extends AppMenu {
 
@@ -14,7 +13,9 @@ public class ShopMenu extends AppMenu {
     public void check(Scanner scanner) {
         System.out.println(ShopMenuController.status());
 
+        System.out.print("\u001B[33m");
         String input = scanner.nextLine();
+        System.out.print("\u001B[0m");
         Matcher matcher;
         if(input.equals("show current menu")) System.out.println("Register/Login Menu");
         else if(input.equals("show commands"))
