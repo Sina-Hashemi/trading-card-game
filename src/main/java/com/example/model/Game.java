@@ -143,7 +143,7 @@ public class Game {
         while (true) {
             if(player.deck.size() >= player.deckSize) break;
             n = new Random().nextInt(player.player.getCards().size());
-            if(player.player.getCards().get(n).getLevel() != 0 || (player.player.getCards().get(n).getLevel() == 0 && spellCount <= 2)) {
+            if(player.player.getCards().get(n).getLevel() != 0 || (player.player.getCards().get(n).getLevel() == 0 && spellCount < 2)) {
                 if((player.player.getCards().get(n).getCard().getName().equals("HoleChanger") && hostPlayer.wreckedHouses.isEmpty() && guestPlayer.wreckedHouses.isEmpty()) || (player.player.getCards().get(n).getCard().getName().equals("Repairman") && player.wreckedHouses.isEmpty())) continue;
                 player.deck.add(player.player.getCards().get(n).getCard().clone());
                 for(int i = 1; i < player.player.getCards().get(n).getLevel(); i++) {
@@ -182,8 +182,7 @@ public class Game {
     public static void placeCard(int cardNum, int blockNum) {
         if(currentPlayer.deck.get(cardNum).getCharacter() == GameCharacter.None) {
             if(currentPlayer.deck.get(cardNum).getName().equals("Shield")) {
-                currentPlayer.deck.get(cardNum).setAttack(Integer.MAX_VALUE);
-                currentPlayer.map[blockNum] = currentPlayer.deck.get(cardNum);
+                currentPlayer.map[blockNum].setAttack(999);
             }
             else if(currentPlayer.deck.get(cardNum).getName().equals("Heal")) {
                 currentPlayer.map[blockNum] = currentPlayer.deck.get(cardNum);
@@ -248,6 +247,8 @@ public class Game {
                 Collections.shuffle(currentEnemy.deck);
             }
             else if(currentPlayer.deck.get(cardNum).getName().equals("FirstBlood")) {
+                currentPlayer.deck.get(cardNum).setAttack(20);
+                currentPlayer.deck.get(cardNum).setPlayerDamage(50);;
                 if(blockNum == 0) currentPlayer.deck.get(cardNum).buff();
                 currentPlayer.map[blockNum] = currentPlayer.deck.get(cardNum);
             }

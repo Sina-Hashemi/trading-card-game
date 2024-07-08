@@ -5,7 +5,8 @@ import java.util.regex.*;
 public enum GameMenuCommands {
     selectCharacter("^-select character (?<character>.+)$"),
     selectCard("^-select card (?<cardNum>.+) player (?<playerNum>.+)$"),
-    placeCard("^-place card (?<cardNum>.+) in block (?<blockNum>.+)$");
+    // placeCard("^-place card (?<cardNum>.+) in block (?<blockNum>.+)$");
+    placeCard("^-p (?<cardNum>.+) (?<blockNum>.+)$");
 
     private final String pattern;
 

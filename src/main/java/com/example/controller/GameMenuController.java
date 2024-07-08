@@ -60,16 +60,16 @@ public class GameMenuController {
             if(Game.getHostPlayer().getWreckedHouses().contains(i)) x += "Wrecked";
             else if(Game.getHostPlayer().getMap()[i] == null) x += "Empty";
             else if(Game.getHostPlayer().getMap()[i].getCharacter() == GameCharacter.None) x += Game.getHostPlayer().getMap()[i].getName();
+            else x += "\u001B[31mDmg " + Game.getHostPlayer().getMap()[i].getPlayerDamage() + " \u001B[32mA/D " + Game.getHostPlayer().getMap()[i].getAttack() + "\u001B[0m";
             // else x += "Dmg " + Game.getHostPlayer().getMap()[i].getPlayerDamage() + " A/D " + Game.getHostPlayer().getMap()[i].getAttack();
             // else x += String.format("\u001B[31mDmg %-5d \u001B[32mA/D %-5d\u001B[0m", Game.getHostPlayer().getMap()[i].getPlayerDamage(), Game.getHostPlayer().getMap()[i].getAttack());
-            else x += "\u001B[31mDmg " + Game.getHostPlayer().getMap()[i].getPlayerDamage() + " \u001B[32mA/D " + Game.getHostPlayer().getMap()[i].getAttack() + "\u001B[0m";
 
             if(Game.getGuestPlayer().getWreckedHouses().contains(i)) y += "Wrecked";
             else if(Game.getGuestPlayer().getMap()[i] == null) y += "Empty";
             else if(Game.getGuestPlayer().getMap()[i].getCharacter() == GameCharacter.None) y += Game.getGuestPlayer().getMap()[i].getName();
+            else y += "\u001B[31mDmg " + Game.getGuestPlayer().getMap()[i].getPlayerDamage() + " \u001B[32mA/D " + Game.getGuestPlayer().getMap()[i].getAttack() + "\u001B[0m";
             // else y += "Dmg " + Game.getGuestPlayer().getMap()[i].getPlayerDamage() + " A/D " + Game.getGuestPlayer().getMap()[i].getAttack();
             // else y += String.format("\u001B[31mDmg %-5d \u001B[32mA/D %-5d\u001B[0m", Game.getGuestPlayer().getMap()[i].getPlayerDamage(), Game.getGuestPlayer().getMap()[i].getAttack());
-            else y += "\u001B[31mDmg " + Game.getGuestPlayer().getMap()[i].getPlayerDamage() + " \u001B[32mA/D " + Game.getGuestPlayer().getMap()[i].getAttack() + "\u001B[0m";
 
             output += String.format("%-50s %-50s \n", x, y);
         }
@@ -77,9 +77,9 @@ public class GameMenuController {
         output += "\u001B[34mPlayer Two: \u001B[0m" + "\u001B[31m HP = " + Game.getGuestPlayer().getHP() + "\u001B[32m Damage = " + Game.getGuestPlayer().getDmg() + "\u001B[35m Remaining Turn = " + Game.getGuestPlayer().getRemainTurn() + "\u001B[0m Character = " + Game.getGuestPlayer().getCharacter() + "\n";
         n = 1;
         for (Card card : Game.getGuestPlayer().getDeck()) {
-            if(Game.getHostPlayer().isHide()) {
+            if(Game.getGuestPlayer().isHide()) {
                 output += "Your cards are hided!\n";
-                Game.getHostPlayer().setHide(false);
+                Game.getGuestPlayer().setHide(false);
                 break;
             }
 
@@ -116,7 +116,7 @@ public class GameMenuController {
             output += n + ": " + player.getDeck().get(n - 1).getName() + " Spell Card " + Spell.valueOf(player.getDeck().get(n - 1).getName()).getDescription() + " Duration = " + player.getDeck().get(n - 1).getDuration() + "\n";
         }
         else {
-            output += n + ": " + player.getDeck().get(n - 1).getName() + " Normal Card" + " Duration = " + player.getDeck().get(n - 1).getDuration() + " Player Damage = " + player.getDeck().get(n - 1).getPlayerDamage() + "Attack/Defense point =" + player.getDeck().get(n - 1).getAttack() + "\n";
+            output += n + ": " + player.getDeck().get(n - 1).getName() + " Normal Card" + " Duration = " + player.getDeck().get(n - 1).getDuration() + " Player Damage = " + player.getDeck().get(n - 1).getPlayerDamage() + "A/D point = " + player.getDeck().get(n - 1).getAttack() + " character = " + player.getDeck().get(n - 1).getCharacter() + "\n";
         }
         return new Result(true, output);
     }
@@ -141,7 +141,8 @@ public class GameMenuController {
 
         for (int i = 0; i < Game.getCurrentPlayer().getDeck().get(numCard).getDuration(); i++) {
             if(i + numBlock > Game.getCurrentPlayer().getMap().length - 1) return new Result(false, "Not a valid move!");
-            if(Game.getCurrentPlayer().getMap()[numBlock + i] != null) return new Result(false, "Another card placed there!");
+            if(!Game.getCurrentPlayer().getDeck().get(numCard).getName().equals("Shield") && Game.getCurrentPlayer().getMap()[numBlock + i] != null) return new Result(false, "Another card placed there!");
+            if(Game.getCurrentPlayer().getDeck().get(numCard).getName().equals("Shield") && Game.getCurrentPlayer().getMap()[numBlock + i] == null) return new Result(false, "There is no card to protect!");
             if(!Game.getCurrentPlayer().getDeck().get(numCard).getName().equals("Repairman") && Game.getCurrentPlayer().getWreckedHouses().contains(numBlock + i)) return new Result(false, "One of the houses is wrecked!");
             if(Game.getCurrentPlayer().getDeck().get(numCard).getName().equals("Repairman") && !Game.getCurrentPlayer().getWreckedHouses().contains(numBlock + i)) return new Result(false, "The house is not wrecked!");
         }
@@ -179,25 +180,28 @@ public class GameMenuController {
     public static Result moveTimeline() {
         String output = "";
 
-        output += "Player One: " + " HP = " + Game.getHostPlayer().getHP() + " Damage = " + Game.getHostPlayer().getDmg() + "\n";
-        output += "Player Two: " + " HP = " + Game.getGuestPlayer().getHP() + " Damage = " + Game.getGuestPlayer().getDmg() + "\n";
+        output += "\u001B[34mPlayer One: \u001B[0m" + "\u001B[31m HP = " + Game.getHostPlayer().getHP() + "\u001B[32m Damage = " + Game.getHostPlayer().getDmg() + "\n";
+        output += "\u001B[34mPlayer Two: \u001B[0m" + "\u001B[31m HP = " + Game.getGuestPlayer().getHP() + "\u001B[32m Damage = " + Game.getGuestPlayer().getDmg() + "\n";
 
         for(int i = 0; i < 21; i++) {
 
-            output += "Row" + (i + 1) + ":\t";
-            if(Game.getHostPlayer().getWreckedHouses().contains(i)) output += "Wrecked";
-            else if(Game.getHostPlayer().getMap()[i] == null) output += "Empty";
-            else output += "Dmg " + Game.getHostPlayer().getMap()[i].getPlayerDamage() + " A/D " + Game.getHostPlayer().getMap()[i].getAttack();
-            output += "\t";
-            if(Game.getGuestPlayer().getWreckedHouses().contains(i)) output += "Wrecked";
-            else if(Game.getGuestPlayer().getMap()[i] == null) output += "Empty";
-            else output += "Dmg " + Game.getGuestPlayer().getMap()[i].getPlayerDamage() + " A/D " + Game.getGuestPlayer().getMap()[i].getAttack();
-            output += "\n";
+            output += String.format("\u001B[47m\u001B[30mRow%-2d:\u001B[0m\t", (i + 1));
+            String x = "", y = "";
+            if(Game.getHostPlayer().getWreckedHouses().contains(i)) x += "Wrecked";
+            else if(Game.getHostPlayer().getMap()[i] == null) x += "Empty";
+            else if(Game.getHostPlayer().getMap()[i].getCharacter() == GameCharacter.None) x += Game.getHostPlayer().getMap()[i].getName();
+            else x += "\u001B[31mDmg " + Game.getHostPlayer().getMap()[i].getPlayerDamage() + " \u001B[32mA/D " + Game.getHostPlayer().getMap()[i].getAttack() + "\u001B[0m";
+            if(Game.getGuestPlayer().getWreckedHouses().contains(i)) y += "Wrecked";
+            else if(Game.getGuestPlayer().getMap()[i] == null) y += "Empty";
+            else if(Game.getGuestPlayer().getMap()[i].getCharacter() == GameCharacter.None) y += Game.getGuestPlayer().getMap()[i].getName();
+            else y += "\u001B[31mDmg " + Game.getGuestPlayer().getMap()[i].getPlayerDamage() + " \u001B[32mA/D " + Game.getGuestPlayer().getMap()[i].getAttack() + "\u001B[0m";
+
+            output += String.format("%-50s %-50s \n", x, y);
 
             Game.calulateTimeline(i);
 
-            output += "Player One: " + " HP = " + Game.getHostPlayer().getHP() + " Damage = " + Game.getHostPlayer().getDmg() + "\n";
-            output += "Player Two: " + " HP = " + Game.getGuestPlayer().getHP() + " Damage = " + Game.getGuestPlayer().getDmg() + "\n";
+            output += "\u001B[34mPlayer One: \u001B[0m" + "\u001B[31m HP = " + Game.getHostPlayer().getHP() + "\u001B[32m Damage = " + Game.getHostPlayer().getDmg() + "\n";
+            output += "\u001B[34mPlayer Two: \u001B[0m" + "\u001B[31m HP = " + Game.getGuestPlayer().getHP() + "\u001B[32m Damage = " + Game.getGuestPlayer().getDmg() + "\n";
 
             if(Game.getGuestPlayer().getHP() == 0) {
                 output += "Game ended! Player one won!\n";
@@ -209,7 +213,7 @@ public class GameMenuController {
                     Game.getHostPlayer().getPlayer().setMoney(Game.getHostPlayer().getPlayer().getMoney() + Game.getHostPlayer().getHP());
                     output += "Player one earned " + Game.getHostPlayer().getHP() + " money\n";
 
-                    App.getGameHistories().add(new History(Game.getGuestPlayer().getPlayer().getID(), GameResult.WON, "earned " + Game.getGuestPlayer().getPlayer().getMaxHP() + " XP" + ", " + "earned " + Game.getBet() + " money"));
+                    App.getGameHistories().add(new History(Game.getGuestPlayer().getPlayer().getID(), GameResult.WON, "earned " + Game.getGuestPlayer().getPlayer().getMaxHP() + " XP" + ", " + "earned " + Game.getHostPlayer().getHP() + " money"));
                     Game.getHostPlayer().getPlayer().getRecords().add(App.getGameHistories().get(App.getGameHistories().size() - 1).getID());
                     App.getGameHistories().add(new History(Game.getHostPlayer().getPlayer().getID(), GameResult.LOST, "earned " + (Game.getHostPlayer().getPlayer().getMaxHP() / 4) + " XP"));
                     Game.getGuestPlayer().getPlayer().getRecords().add(App.getGameHistories().get(App.getGameHistories().size() - 1).getID());
@@ -240,7 +244,7 @@ public class GameMenuController {
 
                     App.getGameHistories().add(new History(Game.getGuestPlayer().getPlayer().getID(), GameResult.LOST, "earned " + (Game.getGuestPlayer().getPlayer().getMaxHP() / 4) + " XP"));
                     Game.getHostPlayer().getPlayer().getRecords().add(App.getGameHistories().get(App.getGameHistories().size() - 1).getID());
-                    App.getGameHistories().add(new History(Game.getHostPlayer().getPlayer().getID(), GameResult.WON, "earned " + Game.getHostPlayer().getPlayer().getMaxHP() + " XP" + ", " + "earned " + Game.getBet() + " money"));
+                    App.getGameHistories().add(new History(Game.getHostPlayer().getPlayer().getID(), GameResult.WON, "earned " + Game.getHostPlayer().getPlayer().getMaxHP() + " XP" + ", " + "earned " + Game.getGuestPlayer().getHP() + " money"));
                     Game.getGuestPlayer().getPlayer().getRecords().add(App.getGameHistories().get(App.getGameHistories().size() - 1).getID());
                 }
                 else {
