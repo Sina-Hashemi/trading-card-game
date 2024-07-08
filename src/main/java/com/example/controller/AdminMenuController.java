@@ -15,7 +15,7 @@ public class AdminMenuController {
     public static Result showCards() {
         String output = "";
         for (Card card : App.getCards()) {
-            output += card.toString();
+            output += card.toString() + "\n";
         }
         return new Result(true, output);
     }
@@ -23,7 +23,7 @@ public class AdminMenuController {
     public static Result showUsers() {
         String output = "";
         for (User user : App.getUsers()) {
-            output += user.toString();
+            output += user.toString() + "\n";
         }
         return new Result(true, output);
     }

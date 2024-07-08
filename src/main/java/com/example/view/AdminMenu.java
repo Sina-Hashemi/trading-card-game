@@ -37,6 +37,9 @@ public class AdminMenu extends AppMenu {
             Result result = AdminMenuController.checkCard(matcher.group("cardNum"));
             System.out.println(result);
             if (result.isSuccessful()) {
+                System.out.print("\u001B[33m");
+                input = scanner.nextLine();
+                System.out.print("\u001B[0m");
                 if (input.equals("Y") || input.equals("y")) {
                     System.out.println(AdminMenuController.editCard(Integer.parseInt(matcher.group("cardNum")), matcher.group(2), matcher.group(3)));
                 }

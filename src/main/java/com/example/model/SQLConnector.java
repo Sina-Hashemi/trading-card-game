@@ -28,8 +28,8 @@ public class SQLConnector {
         System.out.println("\u001B[31mDatabase connected\u001B[0m");
 
         initializeCards();
-        initializeHistory();
         initializeUsers();
+        initializeHistory();
     }
 
     private static void initializeCards() {
@@ -55,26 +55,6 @@ public class SQLConnector {
                 String gameChar = resultSet.getString("gameChar");
 
                 App.getCards().add(new Card(ID, name, attack, damage, duration, price, upLevel, upCost, GameCharacter.valueOf(gameChar)));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private static void initializeHistory() {
-        try {
-            statement = connection.createStatement();
-            String query = "SELECT * FROM GAMEHISTORY";
-            ResultSet resultSet = statement.executeQuery(query);
-
-            while (resultSet.next()) {
-                int ID = resultSet.getInt("ID");
-                int rivalID = resultSet.getInt("rivalID");
-                String gameResult = resultSet.getString("gameResult");
-                String gameTime = resultSet.getString("gameTime");
-                String RewardsPenalties = resultSet.getString("RewardsPenalties");
-
-                App.getGameHistories().add(new History(ID, rivalID, GameResult.valueOf(gameResult), LocalDateTime.parse(gameTime), RewardsPenalties));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -130,10 +110,32 @@ public class SQLConnector {
         }
     }
 
+    private static void initializeHistory() {
+        try {
+            statement = connection.createStatement();
+            String query = "SELECT * FROM GAMEHISTORY";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                int ID = resultSet.getInt("ID");
+                int rivalID = resultSet.getInt("rivalID");
+                String gameResult = resultSet.getString("gameResult");
+                String gameTime = resultSet.getString("gameTime");
+                String RewardsPenalties = resultSet.getString("RewardsPenalties");
+
+                App.getGameHistories().add(new History(ID, rivalID, GameResult.valueOf(gameResult), LocalDateTime.parse(gameTime), RewardsPenalties));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static void save() {
         saveCards();
         saveHistory();
         saveUsers();
+
+        System.out.println("\u001B[31mData saved\u001B[0m");
     }
 
     private static void saveHistory() {

@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 public class History {
 
     public enum GameResult {
-        LOST,
-        WON
+        WON,
+        LOST
     }
 
     private final int ID, rivalID;
@@ -48,9 +48,11 @@ public class History {
     @Override
     public String toString() {
         if(gameResult == GameResult.WON)
-        return gameTime.toString() + " \u001B[32m" + gameResult + "\u001B[0m " + rival.getUsername() + " " + rival.getLevel() + " " + RewardsPenalties;
+            return String.format("%-15s \u001B[32m%-5s\u001B[0m %-10s %-3d %s", gameTime.toString(), gameResult, rival.getUsername(), rival.getLevel(), RewardsPenalties);
+            // return gameTime.toString() + " \u001B[32m" + gameResult + "\u001B[0m " + rival.getUsername() + " " + rival.getLevel() + " " + RewardsPenalties;
         else
-        return gameTime.toString() + " \u001B[31m" + gameResult + "\u001B[0m " + rival.getUsername() + " " + rival.getLevel() + " " + RewardsPenalties;
+            return String.format("%-15s \u001B[31m%-5s\u001B[0m %-10s %-3d %s", gameTime.toString(), gameResult, rival.getUsername(), rival.getLevel(), RewardsPenalties);
+            // return gameTime.toString() + " \u001B[31m" + gameResult + "\u001B[0m " + rival.getUsername() + " " + rival.getLevel() + " " + RewardsPenalties;
     }
 
     public int getID() {
