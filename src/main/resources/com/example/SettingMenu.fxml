@@ -7,17 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interactor.SettingMenuInteractor">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interactor.SettingMenuInteractor">
    <children>
-      <Label layoutX="67.0" layoutY="93.0" prefHeight="52.0" prefWidth="112.0" text="Sound">
+      <Label layoutX="67.0" layoutY="93.0" prefHeight="52.0" prefWidth="112.0" text="Music">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Slider fx:id="soundSlider" layoutX="187.0" layoutY="102.0" onMouseDragOver="#onChangeVolumeSlider" prefHeight="35.0" prefWidth="332.0" />
-      <CheckBox fx:id="muteCheckBox" layoutX="614.0" layoutY="111.0" mnemonicParsing="false" onAction="#onMuteVolumeCheckBox" text="Mute" />
-      <Button fx:id="changeSoundButton" layoutX="116.0" layoutY="293.0" mnemonicParsing="false" onAction="#onChangeSoundButtonClick" prefHeight="100.0" prefWidth="176.0" text="Change Sound">
+      <Slider fx:id="musicSlider" layoutX="187.0" layoutY="102.0" onMouseDragOver="#onChangeMusicVolumeSlider" prefHeight="35.0" prefWidth="332.0" />
+      <CheckBox fx:id="muteMusicCheckBox" layoutX="614.0" layoutY="111.0" mnemonicParsing="false" onAction="#onMuteMusicVolumeCheckBox" text="Mute" />
+      <Button fx:id="changeSoundButton" layoutX="116.0" layoutY="293.0" mnemonicParsing="false" onAction="#onChangeSoundButtonClick" prefHeight="100.0" prefWidth="176.0" text="Change Music">
          <font>
             <Font size="22.0" />
          </font>
@@ -27,10 +26,17 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="607.0" layoutY="507.0" mnemonicParsing="false" onAction="#onReturnBackButtonClick" prefHeight="73.0" prefWidth="112.0" text="Return Back">
+      <Button fx:id="returnBackButton" layoutX="607.0" layoutY="507.0" mnemonicParsing="false" onAction="#onReturnBackButtonClick" prefHeight="73.0" prefWidth="112.0" text="Return Back">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
+      <Label layoutX="27.0" layoutY="170.0" prefHeight="52.0" prefWidth="152.0" text="Sound effect">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Slider fx:id="soundEffectSlider" layoutX="187.0" layoutY="179.0" onMouseDragOver="#onChangeSoundEffectVolumeSlider" prefHeight="35.0" prefWidth="332.0" />
+      <CheckBox fx:id="muteSoudnEffectCheckBox" layoutX="614.0" layoutY="188.0" mnemonicParsing="false" onAction="#onMuteSoundEffectVolumeCheckBox" text="Mute" />
    </children>
 </AnchorPane>

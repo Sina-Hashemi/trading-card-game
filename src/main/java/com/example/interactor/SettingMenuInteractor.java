@@ -14,9 +14,14 @@ public class SettingMenuInteractor {
     @FXML
     private Button returnBackButton;
     @FXML
-    private Slider soundSlider ;
+    private Slider musicSlider ;
     @FXML
-    private CheckBox muteCheckBox ;
+    private CheckBox muteMusicCheckBox ;
+    @FXML
+    private Slider soundEffectSlider ;
+    @FXML
+    private CheckBox muteSoudnEffectCheckBox ;
+
 
     @FXML
     protected void onChangeSoundButtonClick() {
@@ -31,10 +36,16 @@ public class SettingMenuInteractor {
     }
 
     @FXML
-    protected void onChangeVolumeSlider(){
+    protected void onChangeMusicVolumeSlider(){
+    }
+    @FXML
+    protected void onChangeSoundEffectVolumeSlider(){
     }
 
     @FXML
-    protected void onMuteVolumeCheckBox(){
+    protected void onMuteMusicVolumeCheckBox(){
+    }
+    @FXML
+    protected void onMuteSoundEffectVolumeCheckBox(){
     }
 }
