@@ -13,7 +13,7 @@ import com.example.model.Result;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 
 public class SignUpMenuInteractor implements Initializable {
     @FXML
@@ -21,20 +21,20 @@ public class SignUpMenuInteractor implements Initializable {
     @FXML
     private Label SignUpPrompt ;
     @FXML
-    private TextField userName ;
+    private TextArea userName ;
     @FXML
-    private TextField password;
+    private TextArea password;
     @FXML
-    private TextField passwordConfirmation;
+    private TextArea passwordConfirmation;
     @FXML
-    private TextField nickName;
+    private TextArea nickName;
 
     @FXML
-    private TextField securityConfirmation;
+    private TextArea securityConfirmation;
     @FXML
-    private TextField email;
+    private TextArea email;
     @FXML
-    private TextField captchaAnswer ;
+    private TextArea captchaAnswer ;
 
     private static Captcha captcha;
 
