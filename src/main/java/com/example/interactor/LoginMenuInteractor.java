@@ -34,6 +34,9 @@ public class LoginMenuInteractor {
     private Button checkSecurity;
     @FXML
     private Button changePassword;
+    @FXML
+    private Button randomPassword;
+
 
     Result result;
 
@@ -86,5 +89,9 @@ public class LoginMenuInteractor {
 
         result = LoginMenuController.resetPassword(userName.getText(), newPassword.getText());
         LoginCheck.setText(result.toString());
+    }
+    @FXML
+    protected void onRandomPasswordButtonCheck() {
+
     }
 }

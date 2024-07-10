@@ -30,8 +30,7 @@ public class SignUpMenuInteractor implements Initializable {
     private TextArea passwordConfirmation;
     @FXML
     private TextArea nickName;
-    @FXML
-    private TextArea securityQuestion;
+
     @FXML
     private TextArea securityConfirmation;
     @FXML
@@ -59,24 +58,25 @@ public class SignUpMenuInteractor implements Initializable {
 
     @FXML
     protected void onSignUpButtonClick() throws IOException {
-        Result result = LoginMenuController.register(userName.getText(), password.getText(), passwordConfirmation.getText(), email.getText(), nickName.getText());
-        if(result.isSuccessful()) {
-            result = LoginMenuController.pickQuestion("1", securityQuestion.getText(), securityConfirmation.getText());
-            if(result.isSuccessful()) {
-                if(captchaAnswer.getText().equals(captcha.getAns())) {
-                    Main.setRoot("LoginMenu");
-                }
-                else {
-                    SignUpPrompt.setText("Captcha entered incorrectly. Try again!");
-                }
-            }
-            else {
-                SignUpPrompt.setText(result.toString());
-            }
-        }
-        else {
-            SignUpPrompt.setText(result.toString());
-        }
+        // TODO sina - fix it line 64
+//        Result result = LoginMenuController.register(userName.getText(), password.getText(), passwordConfirmation.getText(), email.getText(), nickName.getText());
+//        if(result.isSuccessful()) {
+//            result = LoginMenuController.pickQuestion("1", securityQuestion.getText(), securityConfirmation.getText());
+//            if(result.isSuccessful()) {
+//                if(captchaAnswer.getText().equals(captcha.getAns())) {
+//                    Main.setRoot("LoginMenu");
+//                }
+//                else {
+//                    SignUpPrompt.setText("Captcha entered incorrectly. Try again!");
+//                }
+//            }
+//            else {
+//                SignUpPrompt.setText(result.toString());
+//            }
+//        }
+//        else {
+//            SignUpPrompt.setText(result.toString());
+//        }
     }
 
     @Override
