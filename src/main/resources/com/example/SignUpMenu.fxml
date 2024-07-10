@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -20,17 +19,10 @@
       <Button layoutX="356.0" layoutY="125.0" mnemonicParsing="false" onAction="#onRandomButtonClick" text="Random Password" />
       <Label fx:id="SignUpPrompt" layoutX="576.0" layoutY="510.0" prefHeight="60.0" prefWidth="200.0" />
       <Button layoutX="620.0" layoutY="447.0" mnemonicParsing="false" onAction="#onSignUpButtonClick" prefHeight="54.0" prefWidth="112.0" text="Sign Up" />
-      <ChoiceBox layoutX="313.0" layoutY="170.0" prefHeight="60.0" prefWidth="200.0">
-         <styleClass>
-            <String fx:value="ffghjfgjh" />
-            <String fx:value="fgjhfgjh" />
-            <String fx:value="fgjhfgjh" />
-            <String fx:value="fgfghj" />
-         </styleClass>
-      </ChoiceBox>
       <Label fx:id="CaptchaQ" layoutX="38.0" layoutY="351.0" prefHeight="192.0" prefWidth="473.0">
          <font>
             <Font size="10.0" />
          </font></Label>
+      <ChoiceBox fx:id="choiceBox" layoutX="313.0" layoutY="170.0" prefHeight="60.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
