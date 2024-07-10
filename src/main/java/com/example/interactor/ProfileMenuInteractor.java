@@ -1,6 +1,7 @@
 package com.example.interactor;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
@@ -17,6 +18,13 @@ public class ProfileMenuInteractor {
     private TextArea newEmail ;
 
     @FXML
+    private Button BackToMainMenu ;
+
+    @FXML
     protected void onChangeButtonClick() {
     }
+    @FXML
+    protected void onBackToMainMenuButtonClick() {
+    }
+
 }
