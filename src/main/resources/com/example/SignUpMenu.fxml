@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interactor.SignUpMenuInteractor">
+   <children>
+      <TextArea fx:id="userName" layoutX="38.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="User Name" />
+      <TextArea fx:id="password" layoutX="325.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="Password" />
+      <TextArea fx:id="passwordConfirmation" layoutX="38.0" layoutY="186.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="Password Confirmation" />
+      <TextArea fx:id="nickName" layoutX="325.0" layoutY="186.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="NickName" />
+      <TextArea fx:id="securityQuestion" layoutX="38.0" layoutY="340.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="Security Question" />
+      <TextArea fx:id="securityConfirmation" layoutX="325.0" layoutY="340.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="Security Confirmation" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="325.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="340.0" />
+      <TextArea fx:id="email" layoutX="38.0" layoutY="460.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="Email" />
+      <TextArea fx:id="captchaAnswer" layoutX="325.0" layoutY="580.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="Captcha Answer" />
+      <Button layoutX="362.0" layoutY="123.0" mnemonicParsing="false" onAction="#onRandomButtonClick" text="Random Password" />
+      <Label fx:id="SignUpPrompt" layoutX="413.0" layoutY="709.0" prefHeight="60.0" prefWidth="112.0" />
+      <Label fx:id="CaptchaQ" layoutX="38.0" layoutY="580.0" prefHeight="60.0" prefWidth="200.0" />
+      <Button layoutX="82.0" layoutY="682.0" mnemonicParsing="false" onAction="#onSignUpButtonClick" prefHeight="54.0" prefWidth="112.0" text="Sign Up" />
+   </children>
+</AnchorPane>
