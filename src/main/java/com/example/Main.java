@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.interactor.SettingMenuInteractor;
 import com.example.model.SQLConnector;
 
 // import com.example.view.AppView;
@@ -10,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -21,6 +23,7 @@ public class Main extends Application {
         scene = new Scene(loadFXML("StartMenu"), 800, 600);
         stage.setTitle("Trading Card Game");
         stage.setScene(scene);
+        SettingMenuInteractor.setTheme();
         stage.show();
     }
 
