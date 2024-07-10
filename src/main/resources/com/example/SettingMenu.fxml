@@ -16,17 +16,17 @@
       </Label>
       <Slider fx:id="musicSlider" layoutX="187.0" layoutY="102.0" onMouseDragOver="#onChangeMusicVolumeSlider" prefHeight="35.0" prefWidth="332.0" />
       <CheckBox fx:id="muteMusicCheckBox" layoutX="614.0" layoutY="111.0" mnemonicParsing="false" onAction="#onMuteMusicVolumeCheckBox" text="Mute" />
-      <Button fx:id="changeSoundButton" layoutX="116.0" layoutY="293.0" mnemonicParsing="false" onAction="#onChangeSoundButtonClick" prefHeight="100.0" prefWidth="176.0" text="Change Music">
+      <Button fx:id="changeSoundButton" layoutX="116.0" layoutY="293.0" mnemonicParsing="false" onAction="#onChangeSoundButtonClick" prefHeight="100.0" prefWidth="176.0" styleClass="btn" text="Change Music">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="changeThemeButton" layoutX="551.0" layoutY="293.0" mnemonicParsing="false" onAction="#onChangeThemButtonClick" prefHeight="100.0" prefWidth="176.0" text="Change Theme">
+      <Button fx:id="changeThemeButton" layoutX="551.0" layoutY="293.0" mnemonicParsing="false" onAction="#onChangeThemButtonClick" prefHeight="100.0" prefWidth="176.0" styleClass="btn" text="Change Theme">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="returnBackButton" layoutX="607.0" layoutY="507.0" mnemonicParsing="false" onAction="#onReturnBackButtonClick" prefHeight="73.0" prefWidth="112.0" text="Return Back">
+      <Button fx:id="returnBackButton" layoutX="607.0" layoutY="507.0" mnemonicParsing="false" onAction="#onReturnBackButtonClick" prefHeight="73.0" prefWidth="112.0" styleClass="btn" text="Return Back">
          <font>
             <Font size="15.0" />
          </font>

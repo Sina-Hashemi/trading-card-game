@@ -11,8 +11,8 @@
       <TextField fx:id="newPassword" layoutX="552.0" layoutY="74.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="New Password" />
       <TextField fx:id="newNickName" layoutX="300.0" layoutY="74.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="New NickName" />
       <TextField fx:id="newEmail" layoutX="178.0" layoutY="173.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="New Email" />
-      <Button layoutX="439.0" layoutY="173.0" mnemonicParsing="false" onAction="#onChangeButtonClick" prefHeight="60.0" prefWidth="200.0" text="Change !" />
+      <Button layoutX="439.0" layoutY="173.0" mnemonicParsing="false" onAction="#onChangeButtonClick" prefHeight="60.0" prefWidth="200.0" styleClass="btn" text="Change !" />
       <Label fx:id="error" layoutX="32.0" layoutY="278.0" prefHeight="99.0" prefWidth="736.0" />
-      <Button fx:id="BackToMainMenu" layoutX="592.0" layoutY="499.0" mnemonicParsing="false" onAction="#onBackToMainMenuButtonClick" prefHeight="60.0" prefWidth="160.0" text="Return to Main Menu" />
+      <Button fx:id="BackToMainMenu" layoutX="592.0" layoutY="499.0" mnemonicParsing="false" onAction="#onBackToMainMenuButtonClick" prefHeight="60.0" prefWidth="160.0" styleClass="btn" text="Return to Main Menu" />
    </children>
 </AnchorPane>

@@ -3,14 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<?import javafx.scene.control.TextField?>
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interactor.LoginMenuInteractor">
    <children>
-      <Button fx:id="checkSecurity" layoutX="630.0" layoutY="238.0" onAction="#onCheckButtonCheck" prefHeight="34.0" prefWidth="82.0" text="Check !" visible="false" />
-      <Button layoutX="634.0" layoutY="55.0" onAction="#onLoginButtonClick" prefHeight="34.0" prefWidth="74.0" text="LogIn !" />
+      <Button fx:id="checkSecurity" layoutX="630.0" layoutY="238.0" onAction="#onCheckButtonCheck" prefHeight="34.0" prefWidth="82.0" styleClass="btn" text="Check !" visible="false" />
+      <Button layoutX="634.0" layoutY="55.0" onAction="#onLoginButtonClick" prefHeight="34.0" prefWidth="74.0" styleClass="btn" text="LogIn !" />
       <TextField fx:id="userName" layoutX="38.0" layoutY="33.0" prefHeight="77.0" prefWidth="234.0" promptText="UserName " />
       <TextField fx:id="password" layoutX="326.0" layoutY="33.0" prefHeight="77.0" prefWidth="234.0" promptText="password " />
       <CheckBox fx:id="forgotPassword" layoutX="39.0" layoutY="143.0" mnemonicParsing="false" onAction="#onForgotPasswordCheck" prefHeight="34.0" prefWidth="161.0" text="Forgot My password" />
@@ -18,10 +17,10 @@
       <TextField fx:id="securityAns" layoutX="327.0" layoutY="217.0" prefHeight="77.0" prefWidth="234.0" promptText="Security Answer" visible="false" />
       <TextField fx:id="newPassword" layoutX="38.0" layoutY="360.0" prefHeight="77.0" prefWidth="234.0" promptText="New Password" visible="false" />
       <TextField fx:id="newPasswordConfirmation" layoutX="326.0" layoutY="360.0" prefHeight="77.0" prefWidth="234.0" promptText="New Password Confirmation" visible="false" />
-      <Button fx:id="changePassword" layoutX="607.0" layoutY="381.0" onAction="#onChangePasswordCheck" prefHeight="34.0" prefWidth="128.0" text="Change Password !" visible="false" />
+      <Button fx:id="changePassword" layoutX="607.0" layoutY="381.0" onAction="#onChangePasswordCheck" prefHeight="34.0" prefWidth="128.0" styleClass="btn" text="Change Password !" visible="false" />
       <Label fx:id="LoginCheck" layoutX="554.0" layoutY="122.0" prefHeight="77.0" prefWidth="234.0" />
       <Label fx:id="securityCheckText" layoutX="560.0" layoutY="293.0" prefHeight="77.0" prefWidth="225.0" visible="false" />
       <Label fx:id="changePasswordText" layoutX="554.0" layoutY="476.0" prefHeight="77.0" prefWidth="234.0" visible="false" />
-      <Button fx:id="randomPassword" layoutX="91.0" layoutY="459.0" mnemonicParsing="false" onAction="#onRandomPasswordButtonCheck" prefHeight="34.0" prefWidth="128.0" text="Random Password" visible="false" />
+      <Button fx:id="randomPassword" layoutX="91.0" layoutY="459.0" mnemonicParsing="false" onAction="#onRandomPasswordButtonCheck" prefHeight="34.0" prefWidth="128.0" styleClass="btn" text="Random Password" visible="false" />
    </children>
 </AnchorPane>
