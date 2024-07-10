@@ -17,19 +17,19 @@ public class LoginMenuInteractor {
     @FXML
     private Label changePasswordText ;
     @FXML
-    private TextArea userName ;
+    private TextField userName ;
     @FXML
-    private TextArea  password;
+    private TextField  password;
     @FXML
-    private TextArea  newPassword;
+    private TextField  newPassword;
     @FXML
-    private TextArea newPasswordConfirmation;
+    private TextField newPasswordConfirmation;
     @FXML
     private CheckBox forgotPassword;
     @FXML
     private Label securityQuestion;
     @FXML
-    private TextArea securityAns;
+    private TextField securityAns;
     @FXML
     private Button checkSecurity;
     @FXML
