@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.example.Main;
 import com.example.controller.LoginMenuController;
+import com.example.model.RandomPasswordGenerator;
 import com.example.model.Result;
 
 import javafx.fxml.FXML;
@@ -77,21 +78,25 @@ public class LoginMenuInteractor {
             newPassword.setVisible(true);
             newPasswordConfirmation.setVisible(true);
             changePassword.setVisible(true);
+            randomPassword.setVisible(true);
+            changePasswordText.setVisible(true);
         }
     }
 
     @FXML
     protected void onChangePasswordCheck() {
         if(!newPassword.getText().equals(newPasswordConfirmation.getText())) {
-            LoginCheck.setText("Password doesnt match passwordConfirmation");
+            changePasswordText.setText("Password doesnt match passwordConfirmation");
             return;
         }
 
         result = LoginMenuController.resetPassword(userName.getText(), newPassword.getText());
-        LoginCheck.setText(result.toString());
+        changePasswordText.setText(result.toString());
     }
+
     @FXML
     protected void onRandomPasswordButtonCheck() {
-
+        String randPassword = new RandomPasswordGenerator().getPassword();
+        newPassword.setText(randPassword);
     }
 }

@@ -9,6 +9,7 @@ import com.example.controller.LoginMenuController;
 import com.example.model.Captcha;
 import com.example.model.RandomPasswordGenerator;
 import com.example.model.Result;
+import com.example.model.SecurityQuestion;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,8 +39,8 @@ public class SignUpMenuInteractor implements Initializable {
     private TextField email;
     @FXML
     private TextField captchaAnswer ;
-    // TODO sina fill questions
-    private String [] questions =  {"a", "b" , "c "};
+
+    private String [] questions = new String[3];
 
     private static Captcha captcha;
 
@@ -51,33 +52,40 @@ public class SignUpMenuInteractor implements Initializable {
 
     @FXML
     protected void onSignUpButtonClick() throws IOException {
-        // TODO sina - fix it line 57
-//        Result result = LoginMenuController.register(userName.getText(), password.getText(), passwordConfirmation.getText(), email.getText(), nickName.getText());
-//        if(result.isSuccessful()) {
-//            result = LoginMenuController.pickQuestion("1", securityQuestion.getText(), securityConfirmation.getText());
-//            if(result.isSuccessful()) {
-//                if(captchaAnswer.getText().equals(captcha.getAns())) {
-//                    Main.setRoot("LoginMenu");
-//                }
-//                else {
-//                    SignUpPrompt.setText("Captcha entered incorrectly. Try again!");
-//                }
-//            }
-//            else {
-//                SignUpPrompt.setText(result.toString());
-//            }
-//        }
-//        else {
-//            SignUpPrompt.setText(result.toString());
-//        }
+        String num = "";
+        for (int i = 0; i < questions.length; i++) {
+            if(questions[i].equals(choiceBox.getValue())) {
+                num = Integer.toString(i + 1);
+                break;
+            }
+        }
+       Result result = LoginMenuController.register(userName.getText(), password.getText(), passwordConfirmation.getText(), email.getText(), nickName.getText());
+       if(result.isSuccessful()) {
+           result = LoginMenuController.pickQuestion(num, securityConfirmation.getText(), securityConfirmation.getText());
+           if(result.isSuccessful()) {
+               if(captchaAnswer.getText().equals(captcha.getAns())) {
+                   Main.setRoot("LoginMenu");
+               }
+               else {
+                   SignUpPrompt.setText("Captcha entered incorrectly. Try again!");
+               }
+           }
+           else {
+               SignUpPrompt.setText(result.toString());
+           }
+       }
+       else {
+           SignUpPrompt.setText(result.toString());
+       }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        for (int i = 0; i < questions.length; i++) {
+            questions[i] = SecurityQuestion.questions.get(i + 1);
+        }
         choiceBox.getItems().addAll(questions) ;
         captcha = new Captcha();
         CaptchaQ.setText(captcha.toString());
-
-        // TODO show questions
     }
 }
