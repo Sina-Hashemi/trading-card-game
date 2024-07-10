@@ -1,35 +1,35 @@
 package com.example.interactor;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import com.example.controller.GameMenuController;
+
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 
-public class SelectCharacterMenuInteractor {
+public class SelectCharacterMenuInteractor implements Initializable {
     @FXML
     protected Label playerName;
     @FXML
-    private Button firstCharacterButton ;
+    private ChoiceBox<String> choiceFirst;
     @FXML
-    private Button secondCharacterButton ;
+    private ChoiceBox<String> choiceSecond;
     @FXML
-    private Button thirdCharacterButton ;
-    @FXML
-    private Button forthCharacterButton ;
-    @FXML
-    protected void onFirstButtonClick(){
+    private Button startbtn;
 
-    }
     @FXML
-    protected void onSecondButtonClick(){
-
-    }
-    @FXML
-    protected void onThirdButtonClick(){
-
-    }
-    @FXML
-    protected void onForthButtonClick(){
-
+    protected void onFirstButtonClick() {
+        GameMenuController.handleCharacter(choiceFirst.getValue());
+        GameMenuController.handleCharacter(choiceSecond.getValue());
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        choiceFirst.getItems().addAll(new String[]{"Ice", "Fire", "Posion", "Electricity"}) ;
+        choiceSecond.getItems().addAll(new String[]{"Ice", "Fire", "Posion", "Electricity"}) ;
+    }
 }

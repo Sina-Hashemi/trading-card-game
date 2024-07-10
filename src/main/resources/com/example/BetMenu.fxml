@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interactor.BetMenuInteractor">
+   <children>
+      <Label layoutX="77.0" layoutY="198.0" prefHeight="56.0" prefWidth="271.0" text="How Much Do You Want To Bet ?">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="betAmountTextField" layoutX="485.0" layoutY="198.0" prefHeight="56.0" prefWidth="271.0" />
+      <Button fx:id="betButton" layoutX="339.0" layoutY="339.0" mnemonicParsing="false" onAction="#onBetButtonClick" prefHeight="56.0" prefWidth="124.0" styleClass="btn" text="Bet !">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Button>
+      <Label fx:id="error" layoutX="183.0" layoutY="453.0" prefHeight="85.0" prefWidth="437.0" />
+      <TextField fx:id="password" layoutX="485.0" layoutY="75.0" prefHeight="56.0" prefWidth="271.0" promptText="Password" />
+      <TextField fx:id="username" layoutX="77.0" layoutY="75.0" prefHeight="56.0" prefWidth="271.0" promptText="Username" />
+   </children>
+</AnchorPane>

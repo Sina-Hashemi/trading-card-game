@@ -25,8 +25,8 @@ public class MainMenuInteractor implements Initializable {
     protected ImageView profilePicture ;
 
     @FXML
-    protected void onStartButtonClick() {
-
+    protected void onStartButtonClick() throws IOException {
+        Main.setRoot("BetMenu");
     }
 
     @FXML
@@ -65,7 +65,7 @@ public class MainMenuInteractor implements Initializable {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle(null);
             alert.setHeaderText(null);
-            alert.setContentText("Your random password: " + starterPack.getMessage());
+            alert.setContentText(starterPack.getMessage());
 
             // Show the alert
             alert.showAndWait();
