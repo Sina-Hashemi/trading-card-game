@@ -14,8 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 public class SignUpMenuInteractor implements Initializable {
     @FXML
@@ -45,16 +43,6 @@ public class SignUpMenuInteractor implements Initializable {
     protected void onRandomButtonClick() {
         String randPassword = new RandomPasswordGenerator().getPassword();
         password.setText(randPassword);
-
-        // Create an alert
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Random password");
-        alert.setHeaderText(null);
-        alert.setContentText("Your random password: " + randPassword);
-
-        // Show the alert
-        alert.showAndWait();
-
     }
 
     @FXML

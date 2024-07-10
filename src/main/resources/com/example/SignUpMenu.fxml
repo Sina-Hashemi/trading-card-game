@@ -4,8 +4,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interactor.SignUpMenuInteractor">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interactor.SignUpMenuInteractor">
    <children>
       <TextArea fx:id="userName" layoutX="38.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="User Name" />
       <TextArea fx:id="password" layoutX="325.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="Password" />
@@ -17,7 +18,10 @@
       <TextArea fx:id="captchaAnswer" layoutX="325.0" layoutY="580.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="200.0" promptText="Captcha Answer" />
       <Button layoutX="362.0" layoutY="123.0" mnemonicParsing="false" onAction="#onRandomButtonClick" text="Random Password" />
       <Label fx:id="SignUpPrompt" layoutX="413.0" layoutY="709.0" prefHeight="60.0" prefWidth="112.0" />
-      <Label fx:id="CaptchaQ" layoutX="38.0" layoutY="580.0" prefHeight="60.0" prefWidth="200.0" />
+      <Label fx:id="CaptchaQ" layoutX="38.0" layoutY="533.0" prefHeight="142.0" prefWidth="200.0">
+         <font>
+            <Font size="4.0" />
+         </font></Label>
       <Button layoutX="82.0" layoutY="682.0" mnemonicParsing="false" onAction="#onSignUpButtonClick" prefHeight="54.0" prefWidth="112.0" text="Sign Up" />
    </children>
 </AnchorPane>

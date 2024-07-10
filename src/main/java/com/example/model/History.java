@@ -11,6 +11,7 @@ public class History {
 
     private final int ID, rivalID;
     private User rival = null;
+    private String rivalName;
     private final GameResult gameResult;
     private final LocalDateTime gameTime;
     private final String RewardsPenalties;
@@ -25,6 +26,7 @@ public class History {
         for (User user : App.getUsers()) {
             if(user.getID() == rivalID) {
                 rival = user;
+                rivalName = rival.getUsername();
                 break;
             }
         }
@@ -77,5 +79,9 @@ public class History {
 
     public User getRival() {
         return rival;
+    }
+
+    public String getRivalName() {
+        return rivalName;
     }
 }
