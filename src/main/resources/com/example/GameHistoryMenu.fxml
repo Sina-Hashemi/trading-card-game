@@ -5,8 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interactor.GameHistoryMenuInteractor">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interactor.GameHistoryMenuInteractor">
    <children>
       <TableView fx:id="tableView" layoutX="76.0" layoutY="53.0" prefHeight="291.0" prefWidth="552.0">
         <columns>
@@ -17,6 +16,6 @@
           <TableColumn fx:id="rewardsColumn" prefWidth="110.0" text="Rewards" />
         </columns>
       </TableView>
-      <Button layoutX="76.0" layoutY="502.0" mnemonicParsing="false" onAction="#onReturnMenuClick" prefHeight="63.0" prefWidth="103.0" text="Return to menu" />
+      <Button layoutX="76.0" layoutY="502.0" mnemonicParsing="false" onAction="#onReturnMenuClick" prefHeight="63.0" prefWidth="103.0" styleClass="btn" text="Return to menu" />
    </children>
 </AnchorPane>

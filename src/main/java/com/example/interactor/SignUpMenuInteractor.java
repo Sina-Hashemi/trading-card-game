@@ -12,29 +12,34 @@ import com.example.model.Result;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class SignUpMenuInteractor implements Initializable {
+    @FXML
+    private ChoiceBox<String> choiceBox ;
     @FXML
     private Label CaptchaQ;
     @FXML
     private Label SignUpPrompt ;
     @FXML
-    private TextArea userName ;
+    private TextField userName ;
     @FXML
-    private TextArea password;
+    private TextField password;
     @FXML
-    private TextArea passwordConfirmation;
+    private TextField passwordConfirmation;
     @FXML
-    private TextArea nickName;
+    private TextField nickName;
 
     @FXML
-    private TextArea securityConfirmation;
+    private TextField securityConfirmation;
     @FXML
-    private TextArea email;
+    private TextField email;
     @FXML
-    private TextArea captchaAnswer ;
+    private TextField captchaAnswer ;
+    // TODO sina fill questions
+    private String [] questions =  {"a", "b" , "c "};
 
     private static Captcha captcha;
 
@@ -46,7 +51,7 @@ public class SignUpMenuInteractor implements Initializable {
 
     @FXML
     protected void onSignUpButtonClick() throws IOException {
-        // TODO sina - fix it line 64
+        // TODO sina - fix it line 57
 //        Result result = LoginMenuController.register(userName.getText(), password.getText(), passwordConfirmation.getText(), email.getText(), nickName.getText());
 //        if(result.isSuccessful()) {
 //            result = LoginMenuController.pickQuestion("1", securityQuestion.getText(), securityConfirmation.getText());
@@ -69,6 +74,7 @@ public class SignUpMenuInteractor implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        choiceBox.getItems().addAll(questions) ;
         captcha = new Captcha();
         CaptchaQ.setText(captcha.toString());
 
