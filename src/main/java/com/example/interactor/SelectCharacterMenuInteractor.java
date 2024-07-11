@@ -1,8 +1,10 @@
 package com.example.interactor;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.example.Main;
 import com.example.controller.GameMenuController;
 
 import javafx.fxml.FXML;
@@ -22,9 +24,10 @@ public class SelectCharacterMenuInteractor implements Initializable {
     private Button startbtn;
 
     @FXML
-    protected void onFirstButtonClick() {
+    protected void onFirstButtonClick() throws IOException {
         GameMenuController.handleCharacter(choiceFirst.getValue());
         GameMenuController.handleCharacter(choiceSecond.getValue());
+        Main.setRoot("GameMenu");
     }
 
     @Override
