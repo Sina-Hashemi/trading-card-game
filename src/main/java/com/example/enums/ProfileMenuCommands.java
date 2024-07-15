@@ -2,7 +2,7 @@ package com.example.enums;
 
 import java.util.regex.*;
 
-public enum ProfileMenuCommands { // TODO - Sina - empty input fix
+public enum ProfileMenuCommands {
     back("^back$"),
     info("^Show information$"),
     changeUsername("^Profile change -u (?<username>.+)$"),

@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Random;
 
 import com.example.model.Card.GameCharacter;
-import com.example.model.User.CardLevel;
 
 public class Game {
 
@@ -26,6 +25,16 @@ public class Game {
             wreckedHouses = new ArrayList<>();
             wreckedHouses.add(new Random().nextInt(21));
             HP = player.getMaxHP();
+            remainTurn = 4;
+            dmg = 0;
+            deckSize = 5;
+            isHide = false;
+        }
+
+        public void renew() {
+            map = new Card[21];
+            wreckedHouses = new ArrayList<>();
+            wreckedHouses.add(new Random().nextInt(21));
             remainTurn = 4;
             dmg = 0;
             deckSize = 5;
@@ -319,5 +328,10 @@ public class Game {
 
     public static void endGame() {
         bet = 0;
+    }
+
+    public static void newRound() {
+        hostPlayer.renew();
+        guestPlayer.renew();
     }
 }
