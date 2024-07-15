@@ -5,15 +5,15 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interactor.GameHistoryMenuInteractor">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interactor.GameHistoryMenuInteractor">
    <children>
-      <TableView fx:id="tableView" layoutX="76.0" layoutY="53.0" prefHeight="291.0" prefWidth="552.0">
+      <TableView fx:id="tableView" layoutX="27.0" layoutY="54.0" prefHeight="291.0" prefWidth="747.0">
         <columns>
-          <TableColumn fx:id="timeColumn" prefWidth="110.0" text="Time" />
-          <TableColumn fx:id="resultColumn" prefWidth="110.0" text="Result" />
-          <TableColumn fx:id="rivalNameColumn" prefWidth="110.0" text="Rival Name" />
-          <TableColumn fx:id="rivalLevelColumn" prefWidth="110.0" text="Rival Level" />
-          <TableColumn fx:id="rewardsColumn" prefWidth="110.0" text="Rewards" />
+          <TableColumn fx:id="timeColumn" prefWidth="213.97393226623535" text="Time" />
+          <TableColumn fx:id="resultColumn" prefWidth="105.02604675292969" text="Result" />
+          <TableColumn fx:id="rivalNameColumn" prefWidth="124.26611328125" text="Rival Name" />
+          <TableColumn fx:id="rivalLevelColumn" prefWidth="99.01907348632812" text="Rival Level" />
+          <TableColumn fx:id="rewardsColumn" prefWidth="204.3616943359375" text="Rewards" />
         </columns>
       </TableView>
       <Button layoutX="76.0" layoutY="502.0" mnemonicParsing="false" onAction="#onReturnMenuClick" prefHeight="63.0" prefWidth="103.0" styleClass="btn" text="Return to menu" />

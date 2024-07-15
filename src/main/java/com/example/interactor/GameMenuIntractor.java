@@ -544,9 +544,9 @@ public class GameMenuIntractor implements Initializable {
                     }
                 }
             }
+
+            Game.newRound();
         }
-
-
     }
 
     public void placeCard(int rX) {
