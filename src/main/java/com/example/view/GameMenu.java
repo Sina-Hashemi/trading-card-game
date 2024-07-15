@@ -13,7 +13,7 @@ public class GameMenu extends AppMenu {
     @Override
     public void check(Scanner scanner) {
         if(!GameMenuController.areCharactersOK()) {
-            EnumSet enumSet = EnumSet.allOf(GameCharacter.class); enumSet.remove(GameCharacter.None);
+            EnumSet<GameCharacter> enumSet = EnumSet.allOf(GameCharacter.class); enumSet.remove(GameCharacter.None);
             System.out.println("Please select characters from: " + enumSet);
         }
         else if(GameMenuController.isRoundFinished()) {

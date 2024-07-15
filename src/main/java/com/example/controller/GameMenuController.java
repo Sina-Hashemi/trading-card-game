@@ -261,6 +261,8 @@ public class GameMenuController {
                 App.setCurrentMenu(Menu.MainMenu);
                 return new Result(true, output);
             }
+
+            Game.newRound();
         }
 
         return new Result(true, output);
