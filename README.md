@@ -4,12 +4,12 @@ A turn-based trading card game inspired by [CITY WARS: TOKYO REIGN](https://stor
 
 This project is divided into two phases:
 
-## Phase 1: Console Version (Completed) {#phase-1}
+## Phase 1: Console Version (Completed)
 
-<div style="text-align: center;">
+<p align="center">
    <img src="Figs/phase1img1.png" alt="App screenshot 1" width=50%>
    <img src="Figs/phase1img2.png" alt="App screenshot 2" width=50%>
-</div>
+</p>
 
 In this phase, we implemented the game in the console using the MVC (Model, View, Controller) programming pattern. The game features 7 menus:
 
@@ -23,13 +23,13 @@ In this phase, we implemented the game in the console using the MVC (Model, View
 
 We used MySQL for data storage, with 3 tables for users, cards, and game records.
 
-## Phase 2: Graphical Version (In Progress) {#phase-2}
+## Phase 2: Graphical Version (In Progress)
 
-<div style="text-align: center;">
+<p align="center">
    <img src="Figs/phase2img1.png" alt="App screenshot 1" width=33%>
    <img src="Figs/phase2img2.png" alt="App screenshot 2" width=33%>
    <img src="Figs/phase2img3.png" alt="App screenshot 3" width=33%>
-</div>
+</p>
 
 In this phase, we're implementing a graphical interface using JavaFX and FXML. The `interactor` folder contains code related to FXML files for each menu, replacing the `view` folder from phase 1. This phase includes 11 menus:
 
